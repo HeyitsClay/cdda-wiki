@@ -1,0 +1,3 @@
+@echo off
+echo Opening Cataclysm: DDA Ultimate Wiki...
+start "" "index.html"
