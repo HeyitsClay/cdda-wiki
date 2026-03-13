@@ -3,113 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDDA Wiki</title>
-    <meta name="description" content="The ultimate survival guide for Cataclysm: Dark Days Ahead">
+    <title>SURVIVOR'S TERMINAL // CDDA</title>
+    <meta name="description" content="Cataclysm: Dark Days Ahead - Survival Database">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wiki-container">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Terminal Panel -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h1 class="logo">
-                    <span class="logo-icon">◈</span>
-                    <span class="logo-text">CDDA Wiki</span>
-                </h1>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <div class="logo">
+                    <span class="logo-prompt">SYSTEM://</span>
+                    <span class="logo-text">SURVIVOR<span>OS</span></span>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
                 </button>
+            </div>
+
+            <div class="system-status">
+                <div class="status-item">
+                    <div class="status-indicator"></div>
+                    <span>Online</span>
+                </div>
+                <div class="status-item">
+                    <span>DB_VER: 1.0</span>
+                </div>
             </div>
             
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search..." readonly>
-                <button id="searchBtn" aria-label="Search">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </button>
+                <div class="search-trigger" id="searchTrigger">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>Search database...</span>
+                    <span class="search-shortcut">CTRL+K</span>
+                </div>
             </div>
             
             <nav class="nav-menu" id="navMenu">
                 <div class="nav-section">
-                    <h3>Getting Started</h3>
+                    <div class="nav-section-title">Boot Sequence</div>
                     <ul>
-                        <li><a href="#introduction" class="nav-link" data-section="introduction">Introduction</a></li>
-                        <li><a href="#hotkeys" class="nav-link" data-section="hotkeys">Hotkeys & Controls</a></li>
-                        <li><a href="#beginner-guide" class="nav-link" data-section="beginner-guide">Beginner's Guide</a></li>
+                        <li><a href="#introduction" class="nav-link" data-section="introduction">System_Overview</a></li>
+                        <li><a href="#hotkeys" class="nav-link" data-section="hotkeys">Key_Bindings</a></li>
+                        <li><a href="#beginner-guide" class="nav-link" data-section="beginner-guide">Survival_101</a></li>
                     </ul>
                 </div>
                 
                 <div class="nav-section">
-                    <h3>Game Stages</h3>
+                    <div class="nav-section-title">Progression_Log</div>
                     <ul>
-                        <li><a href="#early-game" class="nav-link" data-section="early-game">Early Game</a></li>
-                        <li><a href="#mid-game" class="nav-link" data-section="mid-game">Mid Game</a></li>
-                        <li><a href="#late-game" class="nav-link" data-section="late-game">Late Game</a></li>
-                        <li><a href="#end-game" class="nav-link" data-section="end-game">End Game</a></li>
+                        <li><a href="#early-game" class="nav-link" data-section="early-game">Phase_01_Early</a></li>
+                        <li><a href="#mid-game" class="nav-link" data-section="mid-game">Phase_02_Mid</a></li>
+                        <li><a href="#late-game" class="nav-link" data-section="late-game">Phase_03_Late</a></li>
+                        <li><a href="#end-game" class="nav-link" data-section="end-game">Phase_04_End</a></li>
                     </ul>
                 </div>
                 
                 <div class="nav-section">
-                    <h3>Core Systems</h3>
+                    <div class="nav-section-title">Subsystems</div>
                     <ul>
-                        <li><a href="#mechanics" class="nav-link" data-section="mechanics">Core Mechanics</a></li>
-                        <li><a href="#combat" class="nav-link" data-section="combat">Combat</a></li>
-                        <li><a href="#crafting" class="nav-link" data-section="crafting">Crafting</a></li>
-                        <li><a href="#mutations" class="nav-link" data-section="mutations">Mutations & CBMs</a></li>
-                        <li><a href="#vehicles" class="nav-link" data-section="vehicles">Vehicles</a></li>
-                        <li><a href="#base-building" class="nav-link" data-section="base-building">Base Building</a></li>
+                        <li><a href="#mechanics" class="nav-link" data-section="mechanics">Core_Mechanics</a></li>
+                        <li><a href="#combat" class="nav-link" data-section="combat">Combat_Protocol</a></li>
+                        <li><a href="#crafting" class="nav-link" data-section="crafting">Fabrication</a></li>
+                        <li><a href="#mutations" class="nav-link" data-section="mutations">Bio_Enhancement</a></li>
+                        <li><a href="#vehicles" class="nav-link" data-section="vehicles">Vehicle_Ops</a></li>
+                        <li><a href="#base-building" class="nav-link" data-section="base-building">Fortification</a></li>
                     </ul>
                 </div>
                 
                 <div class="nav-section">
-                    <h3>Reference</h3>
+                    <div class="nav-section-title">Data_Archive</div>
                     <ul>
-                        <li><a href="#iwishiknew" class="nav-link" data-section="iwishiknew">I Wish I Knew Sooner</a></li>
-                        <li><a href="#tips" class="nav-link" data-section="tips">Tips & Tricks</a></li>
-                        <li><a href="#cheat-sheet" class="nav-link" data-section="cheat-sheet">Cheat Sheet</a></li>
+                        <li><a href="#iwishiknew" class="nav-link" data-section="iwishiknew">Lessons_Learned</a></li>
+                        <li><a href="#tips" class="nav-link" data-section="tips">Field_Notes</a></li>
+                        <li><a href="#cheat-sheet" class="nav-link" data-section="cheat-sheet">Quick_Reference</a></li>
                     </ul>
                 </div>
             </nav>
+
+            <div class="sidebar-footer">
+                <div>ESTD: Day 0 // Cataclysm</div>
+                <div style="margin-top: 4px; opacity: 0.6;">HeyitsClay/SURVIVOR_DB</div>
+            </div>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Main Viewport -->
         <main class="main-content">
-            <!-- Breadcrumb & Header -->
+            <!-- Top Bar -->
             <header class="content-header">
                 <div class="breadcrumb" id="breadcrumb">
-                    <span class="breadcrumb-item">Home</span>
+                    <span class="breadcrumb-item">ROOT</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-item">DATABASE</span>
                 </div>
                 <div class="header-actions">
-                    <button id="randomPage" class="btn-icon" title="Random page">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 8h.01"></path><path d="M8 16h.01"></path><path d="M12 12h.01"></path></svg>
+                    <button id="randomPage" class="btn-icon" title="Random Entry">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/></svg>
                     </button>
-                    <button id="printPage" class="btn-icon" title="Print page">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    <button id="printPage" class="btn-icon" title="Print Data">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
                     </button>
                 </div>
             </header>
 
-            <!-- Content Container -->
+            <!-- Content Viewport -->
             <div class="content-body" id="contentBody">
                 <!-- Dynamic content loads here -->
             </div>
 
-            <!-- Footer -->
+            <!-- System Footer -->
             <footer class="wiki-footer">
-                <p>CDDA Ultimate Wiki · Community Knowledge</p>
+                <span>// END OF LINE //</span>
             </footer>
         </main>
 
-        <!-- Search Overlay -->
+        <!-- Search Interface -->
         <div class="search-overlay" id="searchOverlay">
             <div class="search-modal">
-                <div class="search-header">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" id="globalSearch" placeholder="Search wiki..." autocomplete="off">
-                    <button id="closeSearch" aria-label="Close search">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div class="search-input-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="globalSearch" placeholder="Query database..." autocomplete="off">
+                    <button class="search-close" id="closeSearch">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                     </button>
                 </div>
                 <div class="search-results" id="searchResults"></div>

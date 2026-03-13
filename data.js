@@ -7,74 +7,74 @@ const wikiData = {
         subtitle: "The most complete survival guide ever created",
         type: "home",
         content: `
-            <div class="hero-section">
-                <h1 class="hero-title">☣️ Survive the Cataclysm</h1>
+            <div class="hero">
+                <div class="hero-pretitle">SURVIVOR DATABASE v1.0</div><h1 class="hero-title">☣️ Survive the Cataclysm</h1>
                 <p class="hero-subtitle">Welcome to the ultimate resource for Cataclysm: Dark Days Ahead — 
                 one of the most complex, challenging, and rewarding survival games ever created.</p>
                 
                 <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">9</div>
-                        <div class="hero-stat-label">Major Sections</div>
+                    <div class="stat">
+                        <div class="stat-value">9</div>
+                        <div class="stat-label">Major Sections</div>
                     </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">400K+</div>
-                        <div class="hero-stat-label">Words of Knowledge</div>
+                    <div class="stat">
+                        <div class="stat-value">400K+</div>
+                        <div class="stat-label">Words of Knowledge</div>
                     </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">∞</div>
-                        <div class="hero-stat-label">Ways to Die</div>
+                    <div class="stat">
+                        <div class="stat-value">∞</div>
+                        <div class="stat-label">Ways to Die</div>
                     </div>
                 </div>
             </div>
 
-            <div class="info-box tip">
-                <div class="info-box-title">💡 New to CDDA?</div>
+            <div class="alert tip">
+                <div class="alert-header">💡 New to CDDA?</div>
                 <p>Start with the <a href="#beginner-guide">Beginner's Guide</a> for your first days of survival, 
                 or check out <a href="#iwishiknew">I Wish I Knew Sooner</a> to avoid common mistakes that kill new players.</p>
             </div>
 
             <h2>Quick Navigation</h2>
-            <div class="section-grid">
-                <a href="#hotkeys" class="section-card">
-                    <div class="section-card-icon">⌨️</div>
-                    <div class="section-card-title">Hotkeys & Controls</div>
-                    <div class="section-card-desc">Master the keyboard with quick reference tables for all essential commands</div>
+            <div class="module-grid">
+                <a href="#hotkeys" class="module-card">
+                    <div class="module-id">⌨️</div>
+                    <div class="module-title">Hotkeys & Controls</div>
+                    <div class="module-desc">Master the keyboard with quick reference tables for all essential commands</div>
                 </a>
-                <a href="#beginner-guide" class="section-card">
-                    <div class="section-card-icon">🆕</div>
-                    <div class="section-card-title">Beginner's Guide</div>
-                    <div class="section-card-desc">Your first days of survival: character creation, first weapons, and staying alive</div>
+                <a href="#beginner-guide" class="module-card">
+                    <div class="module-id">🆕</div>
+                    <div class="module-title">Beginner's Guide</div>
+                    <div class="module-desc">Your first days of survival: character creation, first weapons, and staying alive</div>
                 </a>
-                <a href="#early-game" class="section-card">
-                    <div class="section-card-icon">🌅</div>
-                    <div class="section-card-title">Early Game</div>
-                    <div class="section-card-desc">Days 1-30: Establish your base, gather tools, and secure food and water</div>
+                <a href="#early-game" class="module-card">
+                    <div class="module-id">🌅</div>
+                    <div class="module-title">Early Game</div>
+                    <div class="module-desc">Days 1-30: Establish your base, gather tools, and secure food and water</div>
                 </a>
-                <a href="#mid-game" class="section-card">
-                    <div class="section-card-icon">⚡</div>
-                    <div class="section-card-title">Mid Game</div>
-                    <div class="section-card-desc">Days 30-90: Advanced crafting, vehicle acquisition, and mutation exploration</div>
+                <a href="#mid-game" class="module-card">
+                    <div class="module-id">⚡</div>
+                    <div class="module-title">Mid Game</div>
+                    <div class="module-desc">Days 30-90: Advanced crafting, vehicle acquisition, and mutation exploration</div>
                 </a>
-                <a href="#late-game" class="section-card">
-                    <div class="section-card-icon">🏆</div>
-                    <div class="section-card-title">Late Game</div>
-                    <div class="section-card-desc">Mastery and optimization: end-game goals, challenges, and self-sufficiency</div>
+                <a href="#late-game" class="module-card">
+                    <div class="module-id">🏆</div>
+                    <div class="module-title">Late Game</div>
+                    <div class="module-desc">Mastery and optimization: end-game goals, challenges, and self-sufficiency</div>
                 </a>
-                <a href="#end-game" class="section-card">
-                    <div class="section-card-icon">👑</div>
-                    <div class="section-card-title">End Game</div>
-                    <div class="section-card-desc">Ultimate challenges: portal dungeons, lab finales, and transhuman builds</div>
+                <a href="#end-game" class="module-card">
+                    <div class="module-id">👑</div>
+                    <div class="module-title">End Game</div>
+                    <div class="module-desc">Ultimate challenges: portal dungeons, lab finales, and transhuman builds</div>
                 </a>
-                <a href="#mechanics" class="section-card">
-                    <div class="section-card-icon">⚙️</div>
-                    <div class="section-card-title">Core Mechanics</div>
-                    <div class="section-card-desc">Deep dive into game systems: reality bubble, combat, skills, and more</div>
+                <a href="#mechanics" class="module-card">
+                    <div class="module-id">⚙️</div>
+                    <div class="module-title">Core Mechanics</div>
+                    <div class="module-desc">Deep dive into game systems: reality bubble, combat, skills, and more</div>
                 </a>
-                <a href="#iwishiknew" class="section-card">
-                    <div class="section-card-icon">💀</div>
-                    <div class="section-card-title">I Wish I Knew Sooner</div>
-                    <div class="section-card-desc">Wisdom from experienced players: mistakes to avoid and secrets to success</div>
+                <a href="#iwishiknew" class="module-card">
+                    <div class="module-id">💀</div>
+                    <div class="module-title">I Wish I Knew Sooner</div>
+                    <div class="module-desc">Wisdom from experienced players: mistakes to avoid and secrets to success</div>
                 </a>
             </div>
 
@@ -88,8 +88,8 @@ const wikiData = {
                 <li><strong>Tips & Tricks:</strong> Practical wisdom from experienced players</li>
             </ul>
 
-            <div class="info-box warning">
-                <div class="info-box-title">⚠️ A Word of Warning</div>
+            <div class="alert warning">
+                <div class="alert-header">⚠️ A Word of Warning</div>
                 <p>CDDA is a hardcore roguelike. <strong>You will die. Often.</strong> Each death is a learning opportunity. 
                 This guide will help you die less often and progress further, but the Cataclysm is unforgiving. 
                 Stay cautious, plan ahead, and never get overconfident.</p>
@@ -130,8 +130,8 @@ const wikiData = {
         type: "reference",
         tags: ["reference", "controls", "keyboard"],
         content: `
-            <div class="info-box info">
-                <div class="info-box-title">⌨️ Keybinding Note</div>
+            <div class="alert info">
+                <div class="alert-header">⌨️ Keybinding Note</div>
                 <p>Keys shown are default keybindings. Keybindings may vary by version. 
                 Use <strong>?</strong> in-game for context-sensitive help. Some actions require specific items or conditions.</p>
             </div>
@@ -142,7 +142,7 @@ const wikiData = {
             <p>CDDA supports multiple keybinding styles. Choose what works best for you:</p>
             
             <h4>Cardinal Movement (4 Directions)</h4>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>↑</code> or <code>8</code></td><td>Move North</td></tr>
@@ -153,7 +153,7 @@ const wikiData = {
             </div>
 
             <h4>Diagonal Movement (8 Directions)</h4>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>7</code> or <code>Home</code></td><td>Northwest</td></tr>
@@ -163,13 +163,13 @@ const wikiData = {
                 </table>
             </div>
 
-            <div class="info-box warning">
-                <div class="info-box-title">⚠️ Movement Cost</div>
+            <div class="alert warning">
+                <div class="alert-header">⚠️ Movement Cost</div>
                 <p>Diagonal movement costs 141 movement points (vs 100 for cardinal), making it slightly slower per tile.</p>
             </div>
 
             <h3>Waiting & Passing Turns</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>.</code> or <code>5</code></td><td>Wait 1 turn</td></tr>
@@ -189,7 +189,7 @@ const wikiData = {
             <h2>Inventory Management</h2>
             
             <h3>Inventory Screen (<code>i</code>)</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>Arrow Keys</code></td><td>Navigate items</td></tr>
@@ -209,7 +209,7 @@ const wikiData = {
             <h2>Crafting & Construction</h2>
             
             <h3>Crafting Menu (<code>&</code>)</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>Arrow Keys</code></td><td>Navigate recipes</td></tr>
@@ -236,14 +236,14 @@ const wikiData = {
             <h2>Combat Controls</h2>
             
             <h3>Melee Attacks</h3>
-            <div class="info-box tip">
-                <div class="info-box-title">💡 Melee Combat Tips</div>
+            <div class="alert tip">
+                <div class="alert-header">💡 Melee Combat Tips</div>
                 <p>Move into an enemy to attack. Different weapons have different reach. 
                 Martial arts provide special techniques. Stamina affects melee effectiveness.</p>
             </div>
 
             <h3>Ranged Attacks</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>f</code></td><td>Fire ranged weapon</td></tr>
@@ -261,7 +261,7 @@ const wikiData = {
 
             <h2>Character & Status</h2>
             
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>@</code></td><td>Character info screen</td></tr>
@@ -272,7 +272,7 @@ const wikiData = {
             </div>
 
             <h3>Morale Levels</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Level</th><th>Effect</th></tr>
                     <tr><td>Very Good (+100+)</td><td>Focus bonus, crafting bonus</td></tr>
@@ -285,7 +285,7 @@ const wikiData = {
 
             <h2>World Interaction</h2>
             
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>e</code></td><td>Examine tiles</td></tr>
@@ -304,7 +304,7 @@ const wikiData = {
 
             <h2>Vehicle Controls</h2>
             
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>^</code></td><td>Control vehicle</td></tr>
@@ -317,7 +317,7 @@ const wikiData = {
 
             <h2>Time & Environment</h2>
             
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Action</th></tr>
                     <tr><td><code>$</code></td><td>Sleep</td></tr>
@@ -331,7 +331,7 @@ const wikiData = {
             <h2>Advanced Controls</h2>
             
             <h3>Zones Management (<code>Y</code>)</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Zone</th><th>Purpose</th></tr>
                     <tr><td>Loot: Custom</td><td>General storage</td></tr>
@@ -353,8 +353,8 @@ const wikiData = {
 
             <h2>Key Press Summary</h2>
             
-            <div class="info-box info">
-                <div class="info-box-title">📋 Most Used Keys</div>
+            <div class="alert info">
+                <div class="alert-header">📋 Most Used Keys</div>
                 <p><strong>Movement:</strong> Arrow keys or numpad | <strong>Examine:</strong> e | <strong>Inventory:</strong> i | 
                 <strong>Crafting:</strong> & | <strong>Construction:</strong> * | <strong>Wait:</strong> . | 
                 <strong>Sleep:</strong> $ | <strong>Read:</strong> R | <strong>Wield:</strong> w | <strong>Wear:</strong> W</p>
@@ -382,8 +382,8 @@ const wikiData = {
         type: "guide",
         tags: ["beginner", "starter", "survival"],
         content: `
-            <div class="info-box info">
-                <div class="info-box-title">🎯 You WILL Die</div>
+            <div class="alert info">
+                <div class="alert-header">🎯 You WILL Die</div>
                 <p>You will die—probably many times. That's normal. Each death teaches you something. 
                 This guide will help you survive those crucial first days.</p>
             </div>
@@ -401,15 +401,15 @@ const wikiData = {
 
             <h3>Recommended Stats Distribution</h3>
             <p>You have 4 points to distribute among stats. Here's a solid beginner build:</p>
-            <div class="info-box tip">
-                <div class="info-box-title">💡 The 8-10-8-10 Rule</div>
+            <div class="alert tip">
+                <div class="alert-header">💡 The 8-10-8-10 Rule</div>
                 <p><strong>STR 10 / DEX 10 / INT 11 / PER 9</strong> — A solid beginner allocation with no major weaknesses.</p>
             </div>
 
             <h3>Essential Starting Traits</h3>
             
             <h4>Positive Traits (Spend Points Here)</h4>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Trait</th><th>Cost</th><th>Why It's Good</th></tr>
                     <tr><td>Quick</td><td>3 pts</td><td>10% faster movement - affects everything</td></tr>
@@ -444,8 +444,8 @@ const wikiData = {
                 <li>Flashlight (precious!)</li>
                 <li>First aid kit (if you're lucky)</li>
             </ul>
-            <div class="info-box tip">
-                <div class="info-box-title">🔍 Search EVERY tile</div>
+            <div class="alert tip">
+                <div class="alert-header">🔍 Search EVERY tile</div>
                 <p>Press e on each tile to examine. Check the basement too!</p>
             </div>
 
@@ -465,8 +465,8 @@ const wikiData = {
             <h3>Assessing Immediate Threats</h3>
             <p><strong>Press V</strong> - Look around and see monsters/enemies nearby.</p>
             
-            <div class="info-box danger">
-                <div class="info-box-title">⚠️ Rule #1 of CDDA</div>
+            <div class="alert danger">
+                <div class="alert-header">⚠️ Rule #1 of CDDA</div>
                 <p>If you see a zombie and don't have a good weapon, <strong>RUN</strong>.</p>
             </div>
 
@@ -493,8 +493,8 @@ const wikiData = {
             </ul>
 
             <h3>Finding Containers for Water</h3>
-            <div class="info-box warning">
-                <div class="info-box-title">💧 Water is Life</div>
+            <div class="alert warning">
+                <div class="alert-header">💧 Water is Life</div>
                 <p>You need containers to carry water! Look for plastic bottles, jars, canteens.</p>
             </div>
 
@@ -519,8 +519,8 @@ const wikiData = {
             </ul>
 
             <h3>Boiling Water (Fire Setup)</h3>
-            <div class="info-box danger">
-                <div class="info-box-title">⚠️ CRITICAL</div>
+            <div class="alert danger">
+                <div class="alert-header">⚠️ CRITICAL</div>
                 <p>Drinking unsafe water causes disease! Always boil before drinking.</p>
             </div>
             <p>What you need: Fire source + Container that can hold water + Water to boil</p>
@@ -570,8 +570,8 @@ const wikiData = {
 
             <h2>Common Beginner Mistakes to Avoid</h2>
             
-            <div class="info-box danger">
-                <div class="info-box-title">🚫 NEVER do these early on:</div>
+            <div class="alert danger">
+                <div class="alert-header">🚫 NEVER do these early on:</div>
                 <ul>
                     <li>Entering cities - Death trap for beginners</li>
                     <li>Fighting special zombies - Regular zombies are bad enough</li>
@@ -609,8 +609,8 @@ const wikiData = {
                 <li>☐ Health status (@ menu)</li>
             </ul>
 
-            <div class="info-box success">
-                <div class="info-box-title">✨ Final Words of Encouragement</div>
+            <div class="alert tip">
+                <div class="alert-header">✨ Final Words of Encouragement</div>
                 <p>You will die. Probably a lot. That's not failure—that's learning. Each new character will survive longer than the last. Welcome to the Cataclysm. Good luck out there.</p>
             </div>
         `
@@ -665,7 +665,7 @@ const wikiData = {
             <p><strong>Cons:</strong> Far from urban loot, requires vehicle for scavenging</p>
 
             <h3>Essential Base Features</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Component</th><th>Requirements</th></tr>
                     <tr><td>Sleeping Area</td><td>Bed or comfortable surface, away from windows, preferably underground</td></tr>
@@ -677,8 +677,8 @@ const wikiData = {
 
             <h2>Tool Acquisition Priority List</h2>
             
-            <div class="info-box tip">
-                <div class="info-box-title">🔧 The "Dad's Shed" Checklist</div>
+            <div class="alert tip">
+                <div class="alert-header">🔧 The "Dad's Shed" Checklist</div>
                 <p>These five tools form the foundation of early-game crafting and construction:</p>
             </div>
 
@@ -749,8 +749,8 @@ const wikiData = {
                 <li>No escape route planned</li>
             </ul>
 
-            <div class="info-box warning">
-                <div class="info-box-title">💀 The Golden Rule</div>
+            <div class="alert warning">
+                <div class="alert-header">💀 The Golden Rule</div>
                 <p>"Live to loot another day." Dying with epic loot is worse than retreating with nothing.</p>
             </div>
 
@@ -908,8 +908,8 @@ const wikiData = {
             </ul>
 
             <h3>Installation Basics</h3>
-            <div class="info-box warning">
-                <div class="info-box-title">⚠️ Installation Risks</div>
+            <div class="alert warning">
+                <div class="alert-header">⚠️ Installation Risks</div>
                 <ul>
                     <li>Failure: CBM destroyed, health damage</li>
                     <li>Infection: Possible without proper conditions</li>
@@ -1089,7 +1089,7 @@ const wikiData = {
             </ul>
 
             <h3>Risk Assessment</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Portal Type</th><th>Unprepared</th><th>Prepared</th><th>Optimized</th></tr>
                     <tr><td>Nether</td><td>90%+ death</td><td>40%</td><td>15%</td></tr>
@@ -1164,8 +1164,8 @@ const wikiData = {
         type: "reference",
         tags: ["mechanics", "technical", "systems"],
         content: `
-            <div class="info-box info">
-                <div class="info-box-title">⚙️ Document Purpose</div>
+            <div class="alert info">
+                <div class="alert-header">⚙️ Document Purpose</div>
                 <p>This section explains how CDDA works under the hood. Understanding these systems 
                 will help you make better strategic decisions and optimize your builds.</p>
             </div>
@@ -1369,8 +1369,8 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <h2>Dealing with Special Zombies</h2>
             
             <h3>Shocker Zombie</h3>
-            <div class="info-box danger">
-                <div class="info-box-title">⚡ EXTREME Threat</div>
+            <div class="alert danger">
+                <div class="alert-header">⚡ EXTREME Threat</div>
                 <p>Ranged electric attack, stuns player, ignores most armor.</p>
             </div>
             <p><strong>Strategy:</strong> AVOID until equipped. Use ranged weapons. Rubber boots provide immunity.</p>
@@ -1384,8 +1384,8 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <p><strong>Strategy:</strong> Kill at range, run away after killing, clean bile immediately</p>
 
             <h3>Hulk</h3>
-            <div class="info-box danger">
-                <div class="info-box-title">💀 EXTREME Threat</div>
+            <div class="alert danger">
+                <div class="alert-header">💀 EXTREME Threat</div>
                 <p>200+ HP, massive damage, can throw you (causes damage and stuns)</p>
             </div>
             <p><strong>Strategy:</strong> RUN. Use vehicles for ramming. Explosives are effective.</p>
@@ -1482,15 +1482,15 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ul>
 
             <h3>Batch Crafting</h3>
-            <div class="info-box tip">
-                <div class="info-box-title">💡 Batch Crafting Saves Time</div>
+            <div class="alert tip">
+                <div class="alert-header">💡 Batch Crafting Saves Time</div>
                 <p>Crafting 10 wooden arrows at once is much faster than crafting 1 arrow 10 times.</p>
             </div>
 
             <h2>Tool Quality</h2>
             
             <h3>Essential Tool Qualities</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Quality</th><th>Use</th><th>Minimum Level</th></tr>
                     <tr><td>Cutting</td><td>Most crafts</td><td>1</td></tr>
@@ -1505,7 +1505,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <h2>Material Efficiency</h2>
             
             <h3>Common Substitutions</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Original</th><th>Substitutes</th></tr>
                     <tr><td>Thread</td><td>Sinew, Plant fiber, Yarn</td></tr>
@@ -1575,7 +1575,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <h2>Bionics (CBMs)</h2>
             
             <h3>Finding CBMs</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Location</th><th>CBMs</th><th>Danger</th></tr>
                     <tr><td>Labs</td><td>Many</td><td>Very High</td></tr>
@@ -1740,7 +1740,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <h2>Location Selection</h2>
             
             <h3>Location Mistakes to Avoid</h3>
-            <div class="info-box warning">
+            <div class="alert warning">
                 <ul>
                     <li>Building in a city - constant zombie threat</li>
                     <li>Building near fungal bloom - spreads fast</li>
@@ -1826,7 +1826,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             <h2>Self-Sustaining Base</h2>
             
             <h3>Resource Independence</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Resource</th><th>Self-Sustaining Method</th></tr>
                     <tr><td>Food</td><td>Farming + livestock + foraging</td></tr>
@@ -1848,8 +1848,8 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
         type: "reference",
         tags: ["tips", "beginner", "mistakes"],
         content: `
-            <div class="info-box info">
-                <div class="info-box-title">💀 Learn from Others' Mistakes</div>
+            <div class="alert info">
+                <div class="alert-header">💀 Learn from Others' Mistakes</div>
                 <p>The wisdom experienced players wish they had when they first started.</p>
             </div>
 
@@ -1893,7 +1893,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ol>
 
             <h3>Common Misconceptions</h3>
-            <div class="info-box warning">
+            <div class="alert warning">
                 <ul>
                     <li>"I need to find food immediately" - No, water is the immediate concern</li>
                     <li>"I should kill every zombie I see" - Absolutely not, every fight is a risk</li>
@@ -1923,7 +1923,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ul>
 
             <h3>Underestimated Enemies</h3>
-            <div class="info-box danger">
+            <div class="alert danger">
                 <ul>
                     <li><strong>Zombie Dogs</strong> - Fast, dangerous in packs, knock you down</li>
                     <li><strong>Feral Runners</strong> - Incredibly fast and hit hard</li>
@@ -2056,7 +2056,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ol>
 
             <h3>Sound Management</h3>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Action</th><th>Noise</th></tr>
                     <tr><td>Walking</td><td>Low</td></tr>
@@ -2097,7 +2097,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
         content: `
             <h2>Emergency Actions</h2>
             
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>If Dying Of</th><th>Priority Action</th></tr>
                     <tr><td>Thirst</td><td>Find any water immediately</td></tr>
@@ -2125,7 +2125,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ul>
 
             <h2>Essential Key Bindings</h2>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Key</th><th>Function</th></tr>
                     <tr><td><code>Arrow keys / numpad</code></td><td>Movement</td></tr>
@@ -2171,7 +2171,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </ul>
 
             <h2>Building Safety Ranking</h2>
-            <div class="wiki-table-container">
+            <div class="data-table">
                 <table>
                     <tr><th>Safest</th><th>→</th><th>Most Dangerous</th></tr>
                     <tr><td>Evac shelter</td><td></td><td>Fungal towers</td></tr>
@@ -2184,7 +2184,7 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
             </div>
 
             <h2>Red Flag Enemies (RUN!)</h2>
-            <div class="info-box danger">
+            <div class="alert danger">
                 <ul>
                     <li>Zombie hulk (H) - Massive, fast</li>
                     <li>Zombie master (M) - Summons more zombies</li>
@@ -2235,3 +2235,4 @@ Zombie → Acidic → Spitter → Corrosive</code></pre>
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = wikiData;
 }
+

@@ -1,27 +1,22 @@
 // ========================================
-// CDDA Ultimate Wiki - Sleek Minimal App
+// SURVIVOR'S TERMINAL // Core Systems
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ========================================
     // State
-    // ========================================
     const state = {
         currentSection: 'introduction',
         searchQuery: '',
         sidebarOpen: false
     };
 
-    // ========================================
     // DOM Elements
-    // ========================================
     const contentBody = document.getElementById('contentBody');
     const breadcrumb = document.getElementById('breadcrumb');
     const navLinks = document.querySelectorAll('.nav-link');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
+    const searchTrigger = document.getElementById('searchTrigger');
     const searchOverlay = document.getElementById('searchOverlay');
     const globalSearch = document.getElementById('globalSearch');
     const closeSearch = document.getElementById('closeSearch');
@@ -29,15 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomPage = document.getElementById('randomPage');
     const printPage = document.getElementById('printPage');
 
-    // ========================================
-    // Render Content
-    // ========================================
+    // Render Content with Terminal Aesthetic
     function renderContent(sectionKey) {
         const section = wikiData[sectionKey];
-        if (!section) {
-            console.error(`Section "${sectionKey}" not found`);
-            return;
-        }
+        if (!section) return;
 
         state.currentSection = sectionKey;
 
@@ -47,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>${escapeHtml(section.title)}</h1>
                     ${section.subtitle ? `<p class="article-subtitle">${escapeHtml(section.subtitle)}</p>` : ''}
                     ${section.tags ? `
-                        <div class="article-tags">
-                            ${section.tags.map(tag => `<span class="tag ${tag}">${tag}</span>`).join('')}
+                        <div class="article-meta">
+                            <span>// TAGS: ${section.tags.map(t => t.toUpperCase()).join(', ')}</span>
                         </div>
                     ` : ''}
                 </header>
@@ -56,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </article>
         `;
 
-        // Fade transition
+        // Glitch/fade transition
         contentBody.style.opacity = '0';
-        contentBody.style.transform = 'translateY(8px)';
+        contentBody.style.transform = 'translateY(10px)';
         
         requestAnimationFrame(() => {
             contentBody.innerHTML = contentHTML;
@@ -75,16 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateBreadcrumb(section) {
-        const typeLabels = {
-            'home': 'Home',
-            'guide': 'Guides',
-            'reference': 'Reference'
+        const typePath = {
+            'home': 'ROOT',
+            'guide': 'GUIDES',
+            'reference': 'ARCHIVE'
         };
         
         breadcrumb.innerHTML = `
-            <span class="breadcrumb-item"><a href="#introduction" data-section="introduction">Home</a></span>
-            <span class="breadcrumb-item">${typeLabels[section.type] || 'Page'}</span>
-            <span class="breadcrumb-item">${escapeHtml(section.title)}</span>
+            <span class="breadcrumb-item" data-section="introduction">ROOT</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item">${typePath[section.type] || 'DATA'}</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item" style="color: var(--accent);">${escapeHtml(section.title).toUpperCase().replace(/ /g, '_')}</span>
         `;
     }
 
@@ -100,10 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
-    // ========================================
     // Navigation
-    // ========================================
-    function handleNavigation(e) {
+    document.addEventListener('click', (e) => {
         const link = e.target.closest('[data-section]');
         if (!link) return;
         
@@ -117,15 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebar.classList.remove('open');
             }
             
-            // Update URL hash
             history.pushState(null, null, `#${section}`);
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-link') || e.target.closest('.breadcrumb-item a') || 
-            e.target.closest('.section-card')) {
-            handleNavigation(e);
         }
     });
 
@@ -134,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('open');
     });
 
-    // Close sidebar when clicking outside on mobile
+    // Close sidebar on outside click (mobile)
     document.addEventListener('click', (e) => {
         if (window.innerWidth <= 768 && 
             !sidebar.contains(e.target) && 
@@ -144,13 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ========================================
-    // Search
-    // ========================================
+    // Search System
     function openSearch() {
         searchOverlay.classList.add('active');
         globalSearch.value = '';
-        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-preview" style="text-align: center; padding: var(--space-8);">Type to search...</div></div>';
+        searchResults.innerHTML = '<div class="result-item"><div class="result-preview" style="text-align: center; padding: 40px; color: var(--text-muted);">Enter query...</div></div>';
         
         requestAnimationFrame(() => {
             globalSearch.focus();
@@ -163,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function performSearch(query) {
         if (!query || query.length < 2) {
-            searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-preview" style="text-align: center; padding: var(--space-8);">Type at least 2 characters...</div></div>';
+            searchResults.innerHTML = '<div class="result-item"><div class="result-preview" style="text-align: center; padding: 40px; color: var(--text-muted);">Type to search database...</div></div>';
             return;
         }
 
@@ -178,14 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 results.push({
                     key,
                     title: section.title,
-                    preview: section.subtitle || 'Section',
+                    preview: section.subtitle || 'DATA_ENTRY',
                     relevance: 10
                 });
             } else if (contentMatch) {
                 const contentLower = section.content.toLowerCase();
                 const index = contentLower.indexOf(lowerQuery);
-                const start = Math.max(0, index - 60);
-                const end = Math.min(contentLower.length, index + 90);
+                const start = Math.max(0, index - 50);
+                const end = Math.min(contentLower.length, index + 80);
                 let preview = section.content.substring(start, end)
                     .replace(/<[^>]*>/g, ' ')
                     .replace(/\s+/g, ' ')
@@ -206,12 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
         results.sort((a, b) => b.relevance - a.relevance);
 
         if (results.length === 0) {
-            searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-preview" style="text-align: center; padding: var(--space-8);">No results found</div></div>';
+            searchResults.innerHTML = '<div class="result-item"><div class="result-preview" style="text-align: center; padding: 40px; color: var(--text-muted);">No records found</div></div>';
         } else {
-            searchResults.innerHTML = results.slice(0, 8).map(result => `
-                <div class="search-result-item" data-section="${result.key}">
-                    <div class="search-result-title">${highlightQuery(escapeHtml(result.title), query)}</div>
-                    <div class="search-result-preview">${highlightQuery(escapeHtml(result.preview), query)}</div>
+            searchResults.innerHTML = results.slice(0, 6).map(result => `
+                <div class="result-item" data-section="${result.key}">
+                    <div class="result-title">${highlightQuery(escapeHtml(result.title), query)}</div>
+                    <div class="result-preview">${highlightQuery(escapeHtml(result.preview), query)}</div>
                 </div>
             `).join('');
         }
@@ -226,10 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    // Search event listeners
-    searchBtn.addEventListener('click', openSearch);
-    searchInput.addEventListener('click', openSearch);
-    searchInput.addEventListener('focus', openSearch);
+    // Search events
+    searchTrigger.addEventListener('click', openSearch);
     closeSearch.addEventListener('click', closeSearchModal);
     
     searchOverlay.addEventListener('click', (e) => {
@@ -241,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     searchResults.addEventListener('click', (e) => {
-        const resultItem = e.target.closest('.search-result-item');
+        const resultItem = e.target.closest('.result-item');
         if (resultItem?.dataset.section) {
             renderContent(resultItem.dataset.section);
             closeSearchModal();
@@ -265,9 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ========================================
-    // Random Page & Print
-    // ========================================
+    // Random Entry
     randomPage.addEventListener('click', () => {
         const sections = Object.keys(wikiData);
         const randomSection = sections[Math.floor(Math.random() * sections.length)];
@@ -275,24 +251,23 @@ document.addEventListener('DOMContentLoaded', () => {
         history.pushState(null, null, `#${randomSection}`);
     });
 
+    // Print
     printPage.addEventListener('click', () => {
         window.print();
     });
 
-    // ========================================
-    // Back to Top Button
-    // ========================================
+    // Back to Top
     const backToTop = document.createElement('button');
     backToTop.className = 'back-to-top';
-    backToTop.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
-    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>';
+    backToTop.setAttribute('aria-label', 'Return to top');
     document.body.appendChild(backToTop);
 
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            backToTop.classList.toggle('visible', window.scrollY > 400);
+            backToTop.classList.toggle('visible', window.scrollY > 500);
         }, 50);
     }, { passive: true });
 
@@ -300,9 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ========================================
     // Handle URL Hash
-    // ========================================
     function handleHash() {
         const hash = window.location.hash.slice(1);
         if (hash && wikiData[hash]) {
@@ -315,11 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('hashchange', handleHash);
     window.addEventListener('popstate', handleHash);
 
-    // ========================================
     // Initialize
-    // ========================================
     handleHash();
-
-    // Set transition styles
-    contentBody.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    contentBody.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 });
