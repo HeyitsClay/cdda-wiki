@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cataclysm: DDA - Ultimate Survival Wiki</title>
+    <title>CDDA Wiki</title>
+    <meta name="description" content="The ultimate survival guide for Cataclysm: Dark Days Ahead">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wiki-container">
@@ -15,15 +16,19 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h1 class="logo">
-                    <span class="logo-icon">☣️</span>
+                    <span class="logo-icon">◈</span>
                     <span class="logo-text">CDDA Wiki</span>
                 </h1>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
             </div>
             
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search the wiki...">
-                <button id="searchBtn">🔍</button>
+                <input type="text" id="searchInput" placeholder="Search..." readonly>
+                <button id="searchBtn" aria-label="Search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
             </div>
             
             <nav class="nav-menu" id="navMenu">
@@ -39,10 +44,10 @@
                 <div class="nav-section">
                     <h3>Game Stages</h3>
                     <ul>
-                        <li><a href="#early-game" class="nav-link" data-section="early-game">Early Game (Days 1-30)</a></li>
-                        <li><a href="#mid-game" class="nav-link" data-section="mid-game">Mid Game (Days 30-90)</a></li>
+                        <li><a href="#early-game" class="nav-link" data-section="early-game">Early Game</a></li>
+                        <li><a href="#mid-game" class="nav-link" data-section="mid-game">Mid Game</a></li>
                         <li><a href="#late-game" class="nav-link" data-section="late-game">Late Game</a></li>
-                        <li><a href="#end-game" class="nav-link" data-section="end-game">End Game & Challenges</a></li>
+                        <li><a href="#end-game" class="nav-link" data-section="end-game">End Game</a></li>
                     </ul>
                 </div>
                 
@@ -50,7 +55,7 @@
                     <h3>Core Systems</h3>
                     <ul>
                         <li><a href="#mechanics" class="nav-link" data-section="mechanics">Core Mechanics</a></li>
-                        <li><a href="#combat" class="nav-link" data-section="combat">Combat System</a></li>
+                        <li><a href="#combat" class="nav-link" data-section="combat">Combat</a></li>
                         <li><a href="#crafting" class="nav-link" data-section="crafting">Crafting</a></li>
                         <li><a href="#mutations" class="nav-link" data-section="mutations">Mutations & CBMs</a></li>
                         <li><a href="#vehicles" class="nav-link" data-section="vehicles">Vehicles</a></li>
@@ -59,7 +64,7 @@
                 </div>
                 
                 <div class="nav-section">
-                    <h3>Quick Reference</h3>
+                    <h3>Reference</h3>
                     <ul>
                         <li><a href="#iwishiknew" class="nav-link" data-section="iwishiknew">I Wish I Knew Sooner</a></li>
                         <li><a href="#tips" class="nav-link" data-section="tips">Tips & Tricks</a></li>
@@ -77,8 +82,12 @@
                     <span class="breadcrumb-item">Home</span>
                 </div>
                 <div class="header-actions">
-                    <button id="randomPage" class="btn-icon" title="Random Page">🎲</button>
-                    <button id="printPage" class="btn-icon" title="Print">🖨️</button>
+                    <button id="randomPage" class="btn-icon" title="Random page">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 8h.01"></path><path d="M8 16h.01"></path><path d="M12 12h.01"></path></svg>
+                    </button>
+                    <button id="printPage" class="btn-icon" title="Print page">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    </button>
                 </div>
             </header>
 
@@ -89,7 +98,7 @@
 
             <!-- Footer -->
             <footer class="wiki-footer">
-                <p>CDDA Ultimate Wiki • Based on the Ultimate Survival Guide • Community Knowledge</p>
+                <p>CDDA Ultimate Wiki · Community Knowledge</p>
             </footer>
         </main>
 
@@ -97,8 +106,11 @@
         <div class="search-overlay" id="searchOverlay">
             <div class="search-modal">
                 <div class="search-header">
-                    <input type="text" id="globalSearch" placeholder="Search entire wiki...">
-                    <button id="closeSearch">✕</button>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="globalSearch" placeholder="Search wiki..." autocomplete="off">
+                    <button id="closeSearch" aria-label="Close search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
                 </div>
                 <div class="search-results" id="searchResults"></div>
             </div>
