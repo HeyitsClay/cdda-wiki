@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete Cataclysm: Dark Days Ahead Survival Manual - 0.H Release">
+    <title>CDDA Complete Survival Manual</title>
+    <style>
+:root {
+    --bg-primary: #0a0c10;
+    --bg-secondary: #11141a;
+    --bg-tertiary: #1a1f29;
+    --bg-hover: #232936;
+    --text-primary: #e8ecf1;
+    --text-secondary: #9aa3ad;
+    --text-muted: #6b7280;
+    --accent: #4d9eff;
+    --accent-bright: #6cb3ff;
+    --accent-dim: #388bfd;
+    --danger: #ff5c57;
+    --warning: #ffca28;
+    --success: #5cff85;
+    --info: #56d4dd;
+    --border: #2a303a;
+    --border-subtle: #1e232b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.75;
+    font-size: 15px;
+}
+.container { display: flex; min-height: 100vh; }
+.sidebar {
+    width: 320px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem; }
+.logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--accent), var(--success));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.2rem; color: #000;
+}
+.logo-text { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+.version {
+    font-size: 0.7rem; color: var(--text-muted);
+    margin-bottom: 1.25rem; padding-left: 3.1rem;
+    font-family: ui-monospace, monospace;
+}
+.search-box {
+    width: 100%; padding: 0.65rem 0.9rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+.search-box:focus { outline: none; border-color: var(--accent); }
+.search-box::placeholder { color: var(--text-muted); }
+.nav-section { margin-bottom: 1.5rem; }
+.nav-title {
+    font-size: 0.7rem; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.6rem; padding-left: 0.5rem;
+}
+.nav-list { list-style: none; }
+.nav-item { margin: 0.1rem 0; }
+.nav-link {
+    display: block; padding: 0.4rem 0.6rem;
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 0.82rem; border-radius: 4px;
+    transition: all 0.15s; line-height: 1.4;
+    border-left: 2px solid transparent;
+}
+.nav-link:hover { background: var(--bg-tertiary); color: var(--accent-bright); }
+.nav-link.active { background: var(--bg-tertiary); color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+.main { margin-left: 320px; flex: 1; padding: 2.5rem 4rem; max-width: 1000px; }
+.module { margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-subtle); }
+.module:last-child { border-bottom: none; }
+.module-title {
+    font-size: 2.25rem; font-weight: 800; margin-bottom: 2rem;
+    letter-spacing: -0.02em; line-height: 1.2;
+    background: linear-gradient(90deg, var(--text-primary) 30%, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section { margin: 2.5rem 0; }
+.section-title {
+    font-size: 1.5rem; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 1.25rem; padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent); display: inline-block;
+}
+.subsection { margin: 1.75rem 0; padding: 1rem 0; }
+.subsection-title {
+    font-size: 1.15rem; font-weight: 600; color: var(--accent-bright);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+}
+.subsection-title::before { content: ''; width: 4px; height: 1.15rem; background: var(--accent); border-radius: 2px; }
+.subsubsection { margin: 1rem 0; padding: 0.5rem 0; }
+.subsubsection-title {
+    font-size: 1rem; font-weight: 600; color: var(--warning);
+    margin-bottom: 0.75rem;
+}
+p { margin-bottom: 1rem; color: var(--text-primary); }
+ul, ol { margin: 1rem 0 1.25rem 1.5rem; }
+li { margin-bottom: 0.5rem; color: var(--text-primary); }
+li::marker { color: var(--accent); }
+ul li::marker { content: "› "; font-size: 1.1em; }
+kbd {
+    background: var(--bg-tertiary); border: 1px solid var(--border);
+    border-bottom-width: 2px; border-radius: 4px;
+    padding: 0.15rem 0.4rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.85em; color: var(--accent); white-space: nowrap;
+}
+strong { color: var(--accent-bright); font-weight: 600; }
+em { color: var(--warning); font-style: italic; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+th, td {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+}
+th {
+    background: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover { background: var(--bg-secondary); }
+.tip-box {
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+}
+.tip-box.warning { border-left-color: var(--warning); }
+.tip-box.danger { border-left-color: var(--danger); }
+.tip-box.success { border-left-color: var(--success); }
+.tip-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    color: var(--accent);
+}
+.tip-box.warning .tip-label { color: var(--warning); }
+.tip-box.danger .tip-label { color: var(--danger); }
+.tip-box.success .tip-label { color: var(--success); }
+.back-to-top {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    width: 44px; height: 44px;
+    background: var(--bg-tertiary); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1.25rem;
+    opacity: 0; visibility: hidden; transition: all 0.2s; z-index: 50;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+@media (max-width: 1100px) { .main { padding: 2rem 2.5rem; } }
+@media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .main { margin-left: 0; padding: 1.5rem; max-width: 100%; }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo"><div class="logo-icon">CD</div><span class="logo-text">CDDA Manual</span></div>
+            <div class="version">0.H-RELEASE Herbert</div>
+            <input type="text" class="search-box" id="searchBox" placeholder="Search manual...">
+            <nav class="nav-section">
+                <div class="nav-title">Modules</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#intro" class="nav-link">Introduction</a></li>
+                    <li class="nav-item"><a href="#module1" class="nav-link">Module 1: Survival Foundations</a></li>
+                    <li class="nav-item"><a href="#module2" class="nav-link">Module 2: Establishment</a></li>
+                    <li class="nav-item"><a href="#module3" class="nav-link">Module 3: Power Progression</a></li>
+                    <li class="nav-item"><a href="#module4" class="nav-link">Module 4: Mastery</a></li>
+                    <li class="nav-item"><a href="#module5" class="nav-link">Module 5: Systems Reference</a></li>
+                    <li class="nav-item"><a href="#module6" class="nav-link">Module 6: Quick Reference</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main">
+
+<!-- INTRODUCTION -->
+<section id="intro" class="module">
+<h1 class="module-title">THE COMPLETE CATACLYSM: DARK DAYS AHEAD GUIDE</h1>
+<p><strong>For 0.H-RELEASE Herbert (Stable) - FINAL EDITION</strong></p>
+
+<div class="section">
+<h2 class="section-title">INTRODUCTION</h2>
+<p>Welcome to the apocalypse. This guide contains everything you need to survive, thrive, and eventually master the chaos of Cataclysm: Dark Days Ahead.</p>
+
+<div class="subsection">
+<h3 class="subsection-title">How to Use This Guide</h3>
+<p>This manual is organized by progression phases:</p>
+<ul>
+<li><strong>Days 1-7:</strong> Immediate survival - don't die</li>
+<li><strong>Days 8-30:</strong> Establishment - secure base and resources</li>
+<li><strong>Days 30-90:</strong> Power progression - mutations, CBMs, advanced gear</li>
+<li><strong>Days 90+:</strong> Mastery - endgame content and optimization</li>
+</ul>
+<p>Each module builds on the previous. Don't skip ahead until you've mastered current concepts.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Critical First Steps (Do These NOW)</h3>
+<div class="tip-box danger">
+    <div class="tip-label">Critical Warning</div>
+    <p>Most deaths happen in the first 3 days. Follow these steps religiously:</p>
+</div>
+<ol>
+<li><strong>Configure Safe Mode immediately</strong> (Esc → Options → Safe Mode) - Set to 5 tiles</li>
+<li><strong>Enable Auto-Pulp</strong> (Options → Auto Features) - Prevents zombie revival</li>
+<li><strong>Set up Auto-Pickup</strong> for medical supplies, water, and ammunition</li>
+<li><strong>Learn the Peek command (x)</strong> - Check corners before moving</li>
+<li><strong>Master the Drainpipe escape</strong> (climb up when surrounded)</li>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- MODULE 1 -->
+<section id="module1" class="module">
+<h1 class="module-title">MODULE 1: SURVIVAL FOUNDATIONS (Days 1-7)</h1>
+
+<div class="section">
+<h2 class="section-title">ESSENTIAL CONTROLS (0.H Current)</h2>
+<p>Master these immediately. Print this section if needed.</p>
+
+<div class="subsection">
+<h3 class="subsection-title">Movement & Combat</h3>
+<table>
+<tr><th>Key</th><th>Action</th><th>Critical Notes</th></tr>
+<tr><td>Arrow Keys / Numpad</td><td>Move</td><td>Numpad 1,3,7,9 for diagonals</td></tr>
+<tr><td>Shift + Direction</td><td>Run</td><td>Drains stamina fast; use for escape</td></tr>
+<tr><td>Ctrl + Direction</td><td>Move without attacking</td><td>ESSENTIAL for safe mode navigation</td></tr>
+<tr><td>Tab</td><td>Auto-target nearest enemy</td><td>Combat only</td></tr>
+<tr><td>F</td><td>Toggle reach attack / firing modes</td><td>For spears/polearms and firearms</td></tr>
+<tr><td>. or 5 (numpad)</td><td>Wait 1 turn</td><td>Pass time, regain stamina</td></tr>
+<tr><td>G</td><td>Grab break</td><td>Escape zombie grabs</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Inventory & Interaction</h3>
+<table>
+<tr><th>Key</th><th>Action</th><th>Pro Tip</th></tr>
+<tr><td>i</td><td>Inventory</td><td>Full inventory screen</td></tr>
+<tr><td>g or ,</td><td>Pick up</td><td>Stands on item first</td></tr>
+<tr><td>d</td><td>Drop</td><td>Press TAB to select entire category</td></tr>
+<tr><td>T</td><td>Take off</td><td>Fast unequip for armor swaps</td></tr>
+<tr><td>;</td><td>Look around</td><td>SPOTTING - check before moving</td></tr>
+<tr><td>x</td><td>Examine / Peek</td><td>Inspect terrain/items, peek around corners</td></tr>
+<tr><td>e</td><td>Interact</td><td>Use doors, climb, etc.</td></tr>
+<tr><td>t</td><td>Throw</td><td>Then press . to aim trajectory</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Modern QoL Features (CRITICAL)</h3>
+<p>Access via: Esc → 2. Options → Auto Features</p>
+<table>
+<tr><th>Key</th><th>Action</th><th>Why It Matters</th></tr>
+<tr><td>Y</td><td>Zone Manager</td><td>AUTOMATION - sorting, construction, farming</td></tr>
+<tr><td>O</td><td>Zone Activities</td><td>Batch operations after zones set</td></tr>
+<tr><td>W</td><td>Auto-Travel</td><td>Pathfinding on overmap (use with caution)</td></tr>
+<tr><td>`</td><td>(backtick)</td><td>Sidebar customization</td></tr>
+<tr><td>?</td><td>Context help</td><td>Current keybinds reminder</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">AUTO-ACTIONS CONFIGURATION (Day 1 Priority)</h2>
+<p>Access via: Esc → 2. Options → Auto Features</p>
+
+<div class="subsection">
+<h3 class="subsection-title">Auto-Pickup (Configure IMMEDIATELY)</h3>
+<p><strong>Location:</strong> Options → Auto Features → Auto Pickup</p>
+<p><strong>Recommended Settings:</strong></p>
+<ul>
+<li>Enable: Auto Pickup - ON</li>
+<li>Enable: Auto Pickup Adjacent - ON (picks up from nearby tiles)</li>
+</ul>
+<p><strong>Custom Rules (Add These):</strong></p>
+<ul>
+<li>*matches (for lighting fires)</li>
+<li>*bandage (medical)</li>
+<li>*antibiotic (lifesaving)</li>
+<li>*water (clean)</li>
+<li>*aspirin (pain management)</li>
+</ul>
+<div class="tip-box warning">
+    <div class="tip-label">Important</div>
+    <p>Use * as wildcard. Be careful not to auto-pickup corpses or rotten food.</p>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Auto-Pulp (Day 1 Essential)</h3>
+<p><strong>Location:</strong> Options → Auto Features → Auto Pulp or Butcher</p>
+<p><strong>Settings:</strong></p>
+<ul>
+<li>Set to "Pulp Adjacent Corpses"</li>
+<li><strong>Why:</strong> Prevents zombie revival, saves countless keystrokes</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Auto-Forage (Mid-Game)</h3>
+<p><strong>Location:</strong> Options → Auto Features → Auto Forage</p>
+<p><strong>Usage:</strong></p>
+<ul>
+<li>Great for wilderness survival</li>
+<li>Disable when traveling (slows movement)</li>
+<li>Only forages bushes/trees</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Auto-Notes (Day 1 Essential)</h3>
+<p><strong>Location:</strong> Options → Auto Notes</p>
+<p><strong>Settings:</strong></p>
+<ul>
+<li>Enable Map Extras</li>
+<li><strong>Why:</strong> Marks events/goodies on map you may have missed</li>
+<li>Essential for exploration</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Safe Mode Configuration (CRITICAL - Day 1)</h3>
+<p><strong>Location:</strong> Options → Safe Mode</p>
+<p><strong>Recommended Settings:</strong></p>
+<ul>
+<li>Safe Mode - ON</li>
+<li>Safe Mode Proximity Distance - 5 tiles (default 0 = max view)</li>
+<li>Auto-Peek - OFF (reduces friction)</li>
+</ul>
+<p><strong>Ignore List:</strong></p>
+<ul>
+<li>Add regular zombies once you can handle them</li>
+<li>Never ignore: shocker zombies, hulks, turrets</li>
+<li>Press <kbd>'</kbd> to temporarily ignore specific monster</li>
+</ul>
+<div class="tip-box danger">
+    <div class="tip-label">Critical</div>
+    <p>Safe mode + auto-pulp prevents 80% of early deaths. Configure immediately.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">DAY 1: IMMEDIATE SURVIVAL</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">First 5 Minutes Checklist</h3>
+<ul>
+<li>Check surroundings - Press <kbd>;</kbd> to look around</li>
+<li>Configure auto-actions (see above)</li>
+<li>Get a weapon NOW:
+    <ul>
+    <li>Find rock outside (smash bench if needed)</li>
+    <li>Craft: <kbd>&amp;</kbd> (craft) → makeshift crowbar or cudgel</li>
+    </ul>
+</li>
+<li>Check for threats - Look for zombies before leaving</li>
+<li>Gather containers - Any bottle/jug for water</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Water (Priority #1)</h3>
+<ul>
+<li>Find toilet water (safe to drink in emergency)</li>
+<li>Boil before drinking - needs fire + container</li>
+<li>Craft stone pot or find metal container</li>
+<li>Rain barrels for renewable source</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Food (Priority #2)</h3>
+<ul>
+<li>Forage bushes (<kbd>a</kbd> activate, examine bush)</li>
+<li>Check houses for non-perishables</li>
+<li>Don't starve - eat anything in emergency</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Shelter (Priority #3)</h3>
+<ul>
+<li>Your evac shelter is safe for now</li>
+<li>Board up windows with planks</li>
+<li>Set up sleeping spot</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">CRITICAL SURVIVAL TECHNIQUES</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Drainpipe Escape (Lifesaver)</h3>
+<p><strong>How:</strong></p>
+<ul>
+<li>Find drainpipe on building exterior</li>
+<li><kbd>e</kbd> examine → Climb up</li>
+<li>Jump to adjacent roof if needed</li>
+<li>Works when surrounded</li>
+</ul>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li>Zombies can't climb</li>
+<li>Essential survival technique</li>
+<li>Have rope for getting down safely</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Peek Command (Corner Checking)</h3>
+<p><kbd>x</kbd> → Direction</p>
+<ul>
+<li>Look around corners without exposing yourself</li>
+<li>Essential for safe looting</li>
+<li>Combine with safe mode</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Grab Break (Escape Grabs)</h3>
+<p><kbd>G</kbd> or <kbd>Ctrl</kbd> + Direction</p>
+<ul>
+<li>Escape zombie grabs</li>
+<li>Works when surrounded</li>
+<li>Zombies can't climb</li>
+<li>Essential survival technique</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">TAB Multi-Drop (Inventory Management)</h3>
+<p>In drop menu:</p>
+<ul>
+<li><kbd>TAB</kbd> - Select entire category</li>
+<li><kbd>Enter</kbd> - Drop selected</li>
+<li>Massively faster than individual drops</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">DAYS 2-3: BASIC TOOLS & DEFENSE</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Tools (Find or Craft)</h3>
+<table>
+<tr><th>Tool</th><th>How to Get</th><th>Why</th></tr>
+<tr><td>Hammer</td><td>Sheds, garages, craft from rock</td><td>Construction, nailing boards</td></tr>
+<tr><td>Screwdriver</td><td>Toolboxes, hardware stores</td><td>Electronics, vehicle repair</td></tr>
+<tr><td>Knife</td><td>Kitchens, craft stone knife</td><td>Butchering, crafting, combat</td></tr>
+<tr><td>Crowbar</td><td>Fire stations, craft</td><td>Prying doors, decent weapon</td></tr>
+<tr><td>Saw</td><td>Hardware stores, sheds</td><td>Construction, crafting planks</td></tr>
+<tr><td>Shovel</td><td>Sheds, gardening stores</td><td>Pits, crafting, melee</td></tr>
+<tr><td>Wrench</td><td>Garages, vehicles</td><td>Vehicle repair, plumbing</td></tr>
+<tr><td>Hacksaw</td><td>Hardware stores</td><td>Metal cutting, crafting</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Combat Basics</h3>
+<ul>
+<li>Walk, don't run</li>
+<li>Avoid smashing</li>
+<li>Melee over guns early</li>
+<li>Use terrain - fight in doorways</li>
+<li>Retreat is always an option</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Night Safety</h3>
+<ul>
+<li>Stay inside at night early game</li>
+<li>Zombies see better in dark</li>
+<li>Use sleep to pass time safely</li>
+<li>If caught outside: run, climb, hide</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">DAYS 4-7: ESTABLISHING ROUTINES</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Daily Checklist</h3>
+<ul>
+<li>Drink water (stay hydrated)</li>
+<li>Eat food (don't wait until starving)</li>
+<li>Check gear condition</li>
+<li>Plan next day's activities</li>
+<li>Sleep when tired</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Scavenging Basics</h3>
+<ul>
+<li>Noise discipline: Every action makes sound</li>
+<li>Peek around corners (<kbd>x</kbd> then direction)</li>
+<li>Have escape route planned</li>
+<li>Don't get greedy - leave while safe</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">What to Loot (Priority Order)</h3>
+<ol>
+<li>Backpack/bag (carrying capacity)</li>
+<li>Tools (hammer, screwdriver, knife)</li>
+<li>Books (skill training)</li>
+<li>Non-perishable food</li>
+<li>Medical supplies</li>
+</ol>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">COMMON BEGINNER MISTAKES</h2>
+<table>
+<tr><th>Mistake</th><th>Why It's Bad</th><th>Solution</th></tr>
+<tr><td>Ignoring safe mode</td><td>Walk into hordes</td><td>Configure 5 tile proximity</td></tr>
+<tr><td>Not pulping corpses</td><td>Zombies revive</td><td>Enable auto-pulp</td></tr>
+<tr><td>Running everywhere</td><td>Attracts zombies</td><td>Walk unless escaping</td></tr>
+<tr><td>Smashing furniture</td><td>Makes noise</td><td>Disassemble quietly</td></tr>
+<tr><td>Firing guns early</td><td>Attracts everything</td><td>Use melee until secure</td></tr>
+<tr><td>Not checking corners</td><td>Walk into ambushes</td><td>Peek with x</td></tr>
+<tr><td>Ignoring weather</td><td>Hypothermia/heat stroke</td><td>Check forecast, dress appropriately</td></tr>
+<tr><td>Overencumbrance</td><td>Can't run, slow combat</td><td>Drop unnecessary items</td></tr>
+</table>
+</div>
+</section>
+
+<!-- MODULE 2 -->
+<section id="module2" class="module">
+<h1 class="module-title">MODULE 2: ESTABLISHMENT (Days 8-30)</h1>
+
+<div class="section">
+<h2 class="section-title">BASE BUILDING FUNDAMENTALS</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Location Selection</h3>
+<p><strong>Best Options:</strong></p>
+<ol>
+<li><strong>Rural areas</strong> - Less zombies, more foraging</li>
+<li><strong>Evac shelter</strong> - Already somewhat secure</li>
+<li><strong>Fire station</strong> - Metal doors, equipment</li>
+<li><strong>Cabin in woods</strong> - Isolated, renewable resources</li>
+</ol>
+<p><strong>Avoid:</strong></p>
+<ul>
+<li>Cities (hordes)</li>
+<li>Fungal blooms</li>
+<li>Swamps (mosquitoes, disease)</li>
+<li>Roads (wandering zombies)</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Base Features</h3>
+<table>
+<tr><th>Feature</th><th>Why</th><th>How</th></tr>
+<tr><td>Water source</td><td>Hydration, cooking</td><td>Toilet tank, rain barrel, well</td></tr>
+<tr><td>Bed/sleeping bag</td><td>Sleep quality</td><td>Any comfortable spot</td></tr>
+<tr><td>Storage zone</td><td>Organization</td><td>Y key → Unsorted Loot</td></tr>
+<tr><td>Crafting spot</td><td>Item creation</td><td>Table + chair</td></tr>
+<tr><td>Secure perimeter</td><td>Safety</td><td>Boarded windows, doors</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ZONE MANAGER MASTERY (Y Key)</h2>
+<p>The Zone Manager is CDDA's most powerful automation tool. Master it.</p>
+
+<div class="subsection">
+<h3 class="subsection-title">Access: Y key</h3>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Zone Types</h3>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">1. Unsorted Loot Zone</h4>
+<ul>
+<li>Where you dump items</li>
+<li>Required for sorting to work</li>
+<li>Can cover entire buildings</li>
+<li>Zones can overlap</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">2. Custom Storage Zones</h4>
+<p>Organized by category:</p>
+<ul>
+<li>Food zone</li>
+<li>Tools zone</li>
+<li>Medical zone</li>
+<li>Books zone</li>
+<li>Clothing zone</li>
+<li>Ammo zone</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">3. Vehicle Storage Zones (Experimental 8339+)</h4>
+<ul>
+<li>Can use Zone Manager with vehicle storage spaces</li>
+<li>Set zone on vehicle tile</li>
+<li>Sort items directly into vehicle</li>
+<li>Cannot be multiple tiles - one zone per tile</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">4. Pulp Zone (Massive Time Saver)</h4>
+<ul>
+<li>Create zone over corpses</li>
+<li>Use Zone Activities (<kbd>O</kbd>) → Pulp</li>
+<li>Pulps all corpses in zone</li>
+<li>Much faster than individual pulping</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">5. Construction Blueprint Zone</h4>
+<ul>
+<li>Define construction area</li>
+<li>NPCs or player can build multiple tiles at once</li>
+<li>Mass construction without individual placement</li>
+<li>Requires materials and tools</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">6. Farming Zone</h4>
+<ul>
+<li>Automated farming operations</li>
+<li>Planting, tilling, harvesting</li>
+<li>Works with NPCs</li>
+</ul>
+</div>
+
+<div class="subsubsection">
+<h4 class="subsubsection-title">7. Disassembly Zone</h4>
+<ul>
+<li>Auto-dismantle vehicles/terrain</li>
+<li>Great for salvage operations</li>
+<li>Set up near wreckage</li>
+</ul>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Zone Activities (O Key)</h3>
+<p>After setting zones, press <kbd>O</kbd> for:</p>
+<ul>
+<li><strong>Sorting:</strong> Moves items from unsorted to custom zones</li>
+<li><strong>Pulping:</strong> All corpses in pulp zones</li>
+<li><strong>Construction:</strong> Mass building</li>
+<li><strong>Farming:</strong> Automated crop management</li>
+<li><strong>Disassembly:</strong> Salvage operations</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Zone Overlap Strategies</h3>
+<ul>
+<li>Unsorted zone can cover entire building</li>
+<li>Specific zones overlap with unsorted</li>
+<li>Vehicle zones on individual tiles</li>
+<li>Most efficient: Large unsorted + small specific zones</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Hidden Zone Detection</h3>
+<ul>
+<li>Closest hidden zone's distance shown in UI</li>
+<li>Helps find zones in large bases</li>
+<li>Toggle visibility in zone manager</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">TOOL ACQUISITION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">"Dad's Shed" Checklist</h3>
+<table>
+<tr><th>Tool</th><th>Where to Find</th><th>Priority</th></tr>
+<tr><td>Hammer</td><td>Sheds, garages</td><td>Essential</td></tr>
+<tr><td>Screwdriver set</td><td>Toolboxes</td><td>Essential</td></tr>
+<tr><td>Wrench</td><td>Garages</td><td>Essential</td></tr>
+<tr><td>Hacksaw</td><td>Hardware stores</td><td>High</td></tr>
+<tr><td>Cordless drill</td><td>Construction sites</td><td>High</td></tr>
+<tr><td>Shovel</td><td>Sheds</td><td>Medium</td></tr>
+<tr><td>Axe</td><td>Fire stations</td><td>Medium</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Makeshift Alternatives</h3>
+<ul>
+<li><strong>Stone hammer</strong> - From rock (temporary)</li>
+<li><strong>Makeshift crowbar</strong> - From pipe</li>
+<li><strong>Stone knife</strong> - From rock</li>
+<li><strong>Hand drill</strong> - Crafted</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">FOOD & WATER SECURITY</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Water Solutions</h3>
+<table>
+<tr><th>Method</th><th>Setup</th><th>Notes</th></tr>
+<tr><td>Toilet tanks</td><td>Immediate</td><td>Safe, limited</td></tr>
+<tr><td>Rain barrels</td><td>Need containers</td><td>Renewable, requires filtering</td></tr>
+<tr><td>Rivers/ponds</td><td>Find on map</td><td>Boil before drinking</td></tr>
+<tr><td>Well</td><td>Find or build</td><td>Cleanest source</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Food Preservation</h3>
+<ul>
+<li><strong>Smoking:</strong> Makes jerky (lasts weeks)</li>
+<li><strong>Salt curing:</strong> Long-term meat storage</li>
+<li><strong>Canning:</strong> Requires jars, lids, skill</li>
+<li><strong>Dehydrating:</strong> Lightweight, long-lasting</li>
+<li><strong>Pickling:</strong> Vegetables last months</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Farming Basics</h3>
+<ol>
+<li>Find or craft hoe</li>
+<li>Prepare soil (till)</li>
+<li>Plant seeds</li>
+<li>Wait for growth (check with <kbd>;</kbd>)</li>
+<li>Harvest when mature</li>
+</ol>
+<p><strong>Best Early Crops:</strong></p>
+<ul>
+<li>Strawberries (fast, decent nutrition)</li>
+<li>Vegetables (long-term sustainability)</li>
+<li>Grain (for flour, brewing)</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">VEHICLE ACQUISITION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Finding Your First Vehicle</h3>
+<p><strong>Best Options:</strong></p>
+<ol>
+<li><strong>Bicycle</strong> - Fast, quiet, no fuel</li>
+<li><strong>Shopping cart</strong> - Carry capacity</li>
+<li><strong>Wheelbarrow</strong> - Silent transport</li>
+</ol>
+<p><strong>Car Locations:</strong></p>
+<ul>
+<li>Driveways (lower damage)</li>
+<li>Parking lots</li>
+<li>Highways (higher damage, more gas)</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Vehicle Status Check</h3>
+<p>Examine (<kbd>e</kbd>) vehicle, then:</p>
+<ul>
+<li><strong>Engines:</strong> Working? Damaged?</li>
+<li><strong>Wheels:</strong> All present? Inflated?</li>
+<li><strong>Fuel:</strong> How much gas?</li>
+<li><strong>Battery:</strong> Charged?</li>
+<li><strong>Controls:</strong> Steering working?</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Basic Vehicle Repair</h3>
+<ul>
+<li><strong>Wheels:</strong> Wrench to remove/install</li>
+<li><strong>Battery:</strong> Screwdriver + wrench</li>
+<li><strong>Engines:</strong> High mechanics skill needed</li>
+<li><strong>Tires:</strong> Need tire iron, jack</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">COMBAT PROGRESSION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Weapon Tiers</h3>
+<table>
+<tr><th>Tier</th><th>Weapons</th><th>When to Use</th></tr>
+<tr><td>1</td><td>Rock, stick</td><td>Day 1 only</td></tr>
+<tr><td>2</td><td>Cudgel, pipe</td><td>Days 1-3</td></tr>
+<tr><td>3</td><td>Crowbar, knife spear</td><td>Early game staple</td></tr>
+<tr><td>4</td><td>Sword, combat knife</td><td>Mid-game</td></tr>
+<tr><td>5</td><td>Firearms, explosives</td><td>Late game, hordes</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Reach Attack Positioning</h3>
+<ul>
+<li>Use <kbd>F</kbd> to toggle reach attacks</li>
+<li>Stay 2 tiles away from enemies</li>
+<li>Spears/polearms essential</li>
+<li>Doorways are your friend</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Special Zombie Tactics</h3>
+<table>
+<tr><th>Type</th><th>Danger</th><th>Strategy</th></tr>
+<tr><td>Shocker</td><td>Electricity</td><td>Range only, rubber armor helps</td></tr>
+<tr><td>Spitter</td><td>Acid</td><td>Ranged, don't melee</td></tr>
+<tr><td>Hulk</td><td>Massive damage</td><td>Run, don't fight</td></tr>
+<tr><td>Necromancer</td><td>Revives corpses</td><td>Priority target, kill first</td></tr>
+<tr><td>Master</td><td>Buffs others</td><td>Priority target</td></tr>
+<tr><td>Boomer</td><td>Attracts horde</td><td>Ranged only</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Firearms Basics</h3>
+<div class="tip-box warning">
+    <div class="tip-label">Warning</div>
+    <p>Guns attract EVERYTHING in the area. Use sparingly early game.</p>
+</div>
+<ul>
+<li><strong>Check ammo type</strong> before picking up</li>
+<li><strong>Aim (.)</strong> before firing for accuracy</li>
+<li><strong>Semi-auto:</strong> Tap to fire</li>
+<li><strong>Full-auto:</strong> Wastes ammo, suppressive fire only</li>
+<li><strong>Reload:</strong> <kbd>r</kbd> or <kbd>R</kbd> for advanced</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">3D VISION & FOV SETTINGS</h2>
+<p><strong>Access:</strong> Esc → Options → Graphics</p>
+<ul>
+<li><strong>3D Field of View:</strong> How far you can see vertically</li>
+<li><strong>Vertical Range:</strong> Z-level visibility</li>
+<li><strong>Essential for:</strong> Rooftops, basements, labs</li>
+</ul>
+</div>
+
+<div class="section">
+<h2 class="section-title">SIDEBAR CUSTOMIZATION</h2>
+<p><strong>Access:</strong> <kbd>`</kbd> (backtick key)</p>
+<ul>
+<li>Customize displayed info</li>
+<li>Add/remove widgets</li>
+<li>Track health, weather, moon phase</li>
+</ul>
+</div>
+
+<div class="section">
+<h2 class="section-title">REALITY BUBBLE (Corrected)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">What It Is</h3>
+<p>The "reality bubble" is the area around your character where the game processes events. Size: roughly 60x60 tiles centered on player.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Strategic Implications</h3>
+<ul>
+<li>Zombies outside bubble don't move</li>
+<li>Items don't spoil outside bubble</li>
+<li>Crops don't grow outside bubble</li>
+<li>Use this to your advantage</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Horde Movement</h3>
+<ul>
+<li>Hordes exist on overmap</li>
+<li>They move between overmap tiles</li>
+<li>Can "teleport" into reality bubble</li>
+<li>Listen for approach sounds</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3 -->
+<section id="module3" class="module">
+<h1 class="module-title">MODULE 3: POWER PROGRESSION (Days 30-90)</h1>
+
+<div class="section">
+<h2 class="section-title">MUTATION SYSTEM (Current 0.H Mechanics)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">How Mutations Work</h3>
+<p>Mutations come from:</p>
+<ul>
+<li><strong>Mutagens:</strong> Consumable serums</li>
+<li><strong>Primer + Catalyst:</strong> Two-part system</li>
+<li><strong>Irradiation:</strong> Random, dangerous</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li>Mutations belong to categories (Plant, Beast, Insect, etc.)</li>
+<li>Each category has a "threshold"</li>
+<li>Crossing threshold = powerful post-threshold mutations</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Threshold Crossing (Updated)</h3>
+<p>To cross a threshold:</p>
+<ol>
+<li>Get many mutations in one category</li>
+<li>Consume that category's specific catalyst</li>
+<li>Requires high instability (see below)</li>
+</ol>
+<div class="tip-box success">
+    <div class="tip-label">Pro Tip</div>
+    <p>Threshold crossing is permanent. Choose your path wisely.</p>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Instability Management</h3>
+<p><strong>Instability</strong> = Risk of bad mutations</p>
+<ul>
+<li>Higher instability = more mutations but worse ones</li>
+<li>Reduces slowly over time</li>
+<li>Purifier reduces mutations AND instability</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Recommended Mutation Paths</h3>
+<table>
+<tr><th>Path</th><th>Type</th><th>Best For</th></tr>
+<tr><td>Plant</td><td>Regeneration, photosynthesis</td><td>Sustainable survival</td></tr>
+<tr><td>Beast</td><td>Combat, speed</td><td>Melee fighters</td></tr>
+<tr><td>Insect</td><td>Armor, utility</td><td>All-rounders</td></tr>
+<tr><td>Medical</td><td>Healing, stats</td><td>Cautious players</td></tr>
+<tr><td>Alpha</td><td>Stats, intelligence</td><td>Crafting focus</td></tr>
+<tr><td>Elf-A</td><td>Beauty, stats</td><td>NPC interactions</td></tr>
+<tr><td>Chimera</td><td>Chaos, power</td><td>High-risk/high-reward</td></tr>
+<tr><td>Slime</td><td>Ooze form</td><td>Unique playstyle</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Purifier Strategy</h3>
+<ul>
+<li>Removes random mutations</li>
+<li>High instability = higher chance of removal</li>
+<li>Save before using (backup saves)</li>
+<li>Expensive to craft</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">BIONICS (CBMs) SYSTEM</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Finding CBMs</h3>
+<table>
+<tr><th>Location</th><th>Type</th><th>Danger</th></tr>
+<tr><td>Lab finales</td><td>High-tier CBMs</td><td>Extreme</td></tr>
+<tr><td>Doctor's offices</td><td>Medical CBMs</td><td>Moderate</td></tr>
+<tr><td>Military surplus</td><td>Military CBMs</td><td>High</td></tr>
+<tr><td>Scientist corpses</td><td>Random</td><td>Variable</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Installation Process</h3>
+<p><strong>Requirements:</strong></p>
+<ol>
+<li>CBM item</li>
+<li>Anesthesia kit (or autodoc in labs)</li>
+<li>High first aid skill (4+)</li>
+<li>High intelligence</li>
+<li>Clean, safe environment</li>
+</ol>
+<p><strong>Risks:</strong></p>
+<ul>
+<li>Failure causes damage, pain, possibly death</li>
+<li>Failed installation may destroy CBM</li>
+<li>Always have medical supplies ready</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Power Management</h3>
+<p>CBMs require bionic power. Recharge via:</p>
+<ul>
+<li>Solar CBMs</li>
+<li>UPS</li>
+<li>Batteries</li>
+<li>Bio-ethanol</li>
+</ul>
+<p>Monitor power level (bottom of screen).</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential CBMs (Priority Order)</h3>
+<table>
+<tr><th>CBM</th><th>Function</th><th>Priority</th></tr>
+<tr><td>Internal Storage</td><td>Carry capacity</td><td>Essential</td></tr>
+<tr><td>Joint Servos</td><td>Carry weight</td><td>Essential</td></tr>
+<tr><td>Repair Nanobots</td><td>Self-healing</td><td>High</td></tr>
+<tr><td>Optical Dampers</td><td>Flash protection</td><td>High</td></tr>
+<tr><td>Scent Mask</td><td>Hide from zombies</td><td>Medium</td></tr>
+<tr><td>Integrated Toolset</td><td>Always have tools</td><td>High</td></tr>
+<tr><td>Bionic claws</td><td>Always-armed melee</td><td>Medium</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ADVANCED CRAFTING</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Proficiency System</h3>
+<ul>
+<li>Proficiencies = crafting knowledge</li>
+<li>Learn by crafting, reading, or practice</li>
+<li>Missing proficiencies = slower crafting, more failures</li>
+<li>Some recipes require specific proficiencies</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">High-Level Recipes</h3>
+<p>Unlock by:</p>
+<ul>
+<li>Reading advanced books</li>
+<li>High skill levels</li>
+<li>Specific proficiencies</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Batch Crafting</h3>
+<ul>
+<li>Craft multiple items at once</li>
+<li>More efficient per-item</li>
+<li>Set quantity in crafting menu</li>
+<li>Essential for ammo, food preservation</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">VEHICLE CONSTRUCTION (Current UI)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Building from Scratch</h3>
+<ol>
+<li>Find or craft vehicle frame</li>
+<li>Install wheels (minimum 2)</li>
+<li>Add controls (seat + dashboard)</li>
+<li>Install engine + fuel tank</li>
+<li>Add battery for electric start</li>
+<li>Test before adding extras</li>
+</ol>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Vehicle Parts</h3>
+<table>
+<tr><th>Part</th><th>Function</th><th>Notes</th></tr>
+<tr><td>Frame</td><td>Foundation</td><td>Multiple types available</td></tr>
+<tr><td>Wheels</td><td>Mobility</td><td>Need appropriate size</td></tr>
+<tr><td>Engine</td><td>Power</td><td>Check fuel type</td></tr>
+<tr><td>Fuel tank</td><td>Gas storage</td><td>Multiple sizes</td></tr>
+<tr><td>Battery</td><td>Electricity</td><td>For starting, lights, turrets</td></tr>
+<tr><td>Seat</td><td>Control position</td><td>Driver must have seat</td></tr>
+<tr><td>Box/trunk</td><td>Storage</td><td>Cargo space</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Vehicle Design Tips</h3>
+<ul>
+<li>Keep weight down for speed</li>
+<li>Balance armor vs weight</li>
+<li>Plan escape routes</li>
+<li>Multiple engines = more power but complex</li>
+<li>Storage within easy reach of driver's seat</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ZOMBIE EVOLUTION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Evolution Timeline</h3>
+<table>
+<tr><th>Time</th><th>Evolution Level</th><th>Threats</th></tr>
+<tr><td>Day 1-14</td><td>Basic</td><td>Regular zombies, crawlers</td></tr>
+<tr><td>Day 14-30</td><td>Early Evolution</td><td>Hunters, shockers appear</td></tr>
+<tr><td>Day 30-60</td><td>Mid Evolution</td><td>Hulks, masters common</td></tr>
+<tr><td>Day 60-90</td><td>Late Evolution</td><td>Necromancers, evolved specials</td></tr>
+<tr><td>Day 90+</td><td>Advanced</td><td>All types, dangerous hordes</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Special Types</h3>
+<p>Evolved zombies have enhanced abilities:</p>
+<ul>
+<li><strong>Hunters:</strong> Faster, track by scent</li>
+<li><strong>Shockers:</strong> Electric attacks</li>
+<li><strong>Spitters:</strong> Acid projectiles</li>
+<li><strong>Hulks:</strong> Massive HP, damage</li>
+<li><strong>Masters:</strong> Buff nearby zombies</li>
+<li><strong>Necromancers:</strong> Revive corpses</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Evolution Mechanics</h3>
+<ul>
+<li>Time-based progression</li>
+<li>Hordes evolve faster</li>
+<li>Special locations have evolved zombies earlier</li>
+<li>Elimination slows local evolution</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">RAIDING STRATEGIES</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Lab Types</h3>
+<table>
+<tr><th>Type</th><th>Loot</th><th>Danger</th></tr>
+<tr><td>Standard</td><td>CBMs, mutagens, science gear</td><td>High</td></tr>
+<tr><td>Ice</td><td>Unique mutagens</td><td>Extreme cold + zombies</td></tr>
+<tr><td>Research</td><td>High-tier CBMs</td><td>Robots + turrets</td></tr>
+<tr><td>Central</td><td>Best loot, multiple floors</td><td>Extreme</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Military Facilities</h3>
+<ul>
+<li>Bunkers - Secure, good gear</li>
+<li>Outposts - Weapons, ammo</li>
+<li>Helicopter crash sites - Rare loot, radiation</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Raid Preparation</h3>
+<ul>
+<li>Bring plenty of food/water</li>
+<li>Multiple weapons + ammo</li>
+<li>Healing supplies</li>
+<li>Escape route planned</li>
+<li>Clear approach of regular zombies first</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">WINTER PREPARATION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Cold Weather Gear</h3>
+<table>
+<tr><th>Layer</th><th>Example</th><th>Penalty</th></tr>
+<tr><td>Base</td><td>Long underwear</td><td>Minimal</td></tr>
+<tr><td>Insulation</td><td>Sweater, pants</td><td>Low</td></tr>
+<tr><td>Outer</td><td>Winter coat, snow pants</td><td>Medium</td></tr>
+<tr><td>Extreme</td><td>Survivor suit, fur</td><td>High</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Heating Solutions</h3>
+<ul>
+<li>Wood stove (craftable)</li>
+<li>Space heater (requires power)</li>
+<li>Underground bases (naturally warmer)</li>
+<li>Insulation construction</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Food Preservation</h3>
+<ul>
+<li>Natural refrigeration (outdoors in winter)</li>
+<li>Smoking meat</li>
+<li>Salt curing</li>
+<li>Canning</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4 -->
+<section id="module4" class="module">
+<h1 class="module-title">MODULE 4: MASTERY (Days 90+)</h1>
+
+<div class="section">
+<h2 class="section-title">ADVANCED MUTATIONS & TRANSHUMANISM</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Post-Threshold Builds</h3>
+<table>
+<tr><th>Category</th><th>Playstyle</th><th>Key Mutations</th></tr>
+<tr><td>Plant</td><td>Solar-powered survivor</td><td>Photosynthesis, bark skin, regeneration</td></tr>
+<tr><td>Beast</td><td>Melee monster</td><td>Claws, fangs, fast metabolism</td></tr>
+<tr><td>Insect</td><td>Armored tank</td><td>Chitin, compound eyes, antennae</td></tr>
+<tr><td>Medical</td><td>Stat boost</td><td>Strong, smart, fast healing</td></tr>
+<tr><td>Alpha</td><td>Ultimate human</td><td>All stats boosted, no negatives</td></tr>
+<tr><td>Chimera</td><td>Chaos incarnate</td><td>Random powerful mutations</td></tr>
+<tr><td>Slime</td><td>Ooze form</td><td>Amorphous, squeeze through gaps</td></tr>
+<tr><td>Raptor</td><td>Speed demon</td><td>Fast, leaping, talons</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Full Mutation Builds</h3>
+<p>Commit fully to a mutation path:</p>
+<ul>
+<li>Max category mutations</li>
+<li>Cross threshold early</li>
+<li>Embrace the playstyle changes</li>
+<li>Plan gear around mutations (no boots for talons, etc.)</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Hybrid Builds (Mutation + CBM)</h3>
+<p>The ultimate power combination:</p>
+<ul>
+<li>Mutations for passive bonuses</li>
+<li>CBMs for active abilities</li>
+<li>Balance power consumption</li>
+<li>Beware: some combos incompatible</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Instability Control (Advanced)</h3>
+<ul>
+<li>Use targeted mutagens for specific mutations</li>
+<li>Purifier to remove unwanted mutations</li>
+<li>Accept some negative mutations for powerful positives</li>
+<li>Plan your ideal mutation set</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">COMPLETE BIONIC INSTALLATION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">CBM Farming Locations</h3>
+<table>
+<tr><th>Location</th><th>CBMs</th><th>Strategy</th></tr>
+<tr><td>Lab finales</td><td>2-5 high-tier</td><td>Clear methodically, expect turrets</td></tr>
+<tr><td>Doctor's offices</td><td>1-2 medical</td><td>Quick in-and-out</td></tr>
+<tr><td>Robofacilities</td><td>Variable</td><td>Extremely dangerous</td></tr>
+<tr><td>Scientist basements</td><td>Random</td><td>Lower risk option</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Autodoc Installation</h3>
+<p>Find autodocs in:</p>
+<ul>
+<li>Hospitals</li>
+<li>Lab medical wings</li>
+<li>Doctor's offices (rare)</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Higher success rate</li>
+<li>No anesthesia kit needed</li>
+<li>Multiple CBMs at once</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Power Infrastructure</h3>
+<table>
+<tr><th>Source</th><th>Output</th><th>Notes</th></tr>
+<tr><td>Solar panels (CBM)</td><td>Slow recharge</td><td>Free, reliable</td></tr>
+<tr><td>Internal furnace</td><td>Burns food/biomass</td><td>Emergency power</td></tr>
+<tr><td>Ethanol burner</td><td>High output</td><td>Needs fuel crafting</td></tr>
+<tr><td>UPS</td><td>Battery powered</td><td>Portable, limited</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential CBM Loadout</h3>
+<table>
+<tr><th>Slot</th><th>CBM</th><th>Function</th></tr>
+<tr><td>Power</td><td>Solar panels</td><td>Passive recharge</td></tr>
+<tr><td>Power</td><td>Ethanol burner</td><td>Active generation</td></tr>
+<tr><td>Arms</td><td>Integrated toolset</td><td>Always have tools</td></tr>
+<tr><td>Legs</td><td>Joint servos</td><td>Carry capacity</td></tr>
+<tr><td>Torso</td><td>Internal storage</td><td>Inventory space</td></tr>
+<tr><td>Torso</td><td>Repair nanobots</td><td>Slow healing</td></tr>
+<tr><td>Eyes</td><td>Optical dampers</td><td>Flash protection</td></tr>
+<tr><td>Skin</td><td>Subdermal armor</td><td>Protection</td></tr>
+<tr><td>Mouth</td><td>Scent mask</td><td>Stealth</td></tr>
+<tr><td>Hands</td><td>Fingerhack</td><td>Always have lockpick</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">MARTIAL ARTS MASTERY</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Style Selection by Build</h3>
+<table>
+<tr><th>Build</th><th>Style</th><th>Weapon</th><th>Why</th></tr>
+<tr><td>Stat-based</td><td>Boxing</td><td>Unarmed</td><td>Fast, good damage</td></tr>
+<tr><td>Dexterity</td><td>Muay Thai</td><td>Unarmed</td><td>High damage kicks</td></tr>
+<tr><td>Strength</td><td>Judo</td><td>Unarmed</td><td>Throws, grapples</td></tr>
+<tr><td>Speed</td><td>Taekwondo</td><td>Unarmed</td><td>Fast strikes</td></tr>
+<tr><td>Weapon</td><td>Eskrima</td><td>Sticks/knives</td><td>Fast weapon attacks</td></tr>
+<tr><td>Weapon</td><td>Fencing</td><td>Swords</td><td>Precise strikes</td></tr>
+<tr><td>Weapon</td><td>Silat</td><td>Flexible</td><td>Versatile</td></tr>
+<tr><td>Defensive</td><td>Aikido</td><td>Unarmed</td><td>Counters, throws</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Weapon Styles</h3>
+<ul>
+<li>Each weapon type has compatible styles</li>
+<li>Styles add special moves and bonuses</li>
+<li>Some require specific weapons</li>
+<li>Training required to advance</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Training</h3>
+<ul>
+<li>Practice on weak enemies</li>
+<li>Read martial arts manuals</li>
+<li>Some NPCs can teach</li>
+<li>Style proficiency increases with use</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">PORTAL DUNGEONS & DIMENSIONS</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Portal Types</h3>
+<table>
+<tr><th>Portal</th><th>Environment</th><th>Enemies</th><th>Loot</th></tr>
+<tr><td>Standard</td><td>Weird geometry</td><td>Nether creatures</td><td>Artifacts</td></tr>
+<tr><td>Ice</td><td>Extreme cold</td><td>Frozen entities</td><td>Cryo gear</td></tr>
+<tr><td>Lab</td><td>Corrupted science</td><td>Mutated abominations</td><td>Mutagens</td></tr>
+<tr><td>Forest</td><td>Alien wilderness</td><td>Strange fauna</td><td>Resources</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Preparation Checklist</h3>
+<ul>
+<li>Top-tier armor and weapons</li>
+<li>Full medical supplies</li>
+<li>Food/water for extended expedition</li>
+<li>Escape items (smoke bombs, etc.)</li>
+<li>Light source</li>
+<li>Ranged AND melee options</li>
+<li>Backup gear</li>
+<li>Clear inventory space for loot</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Portal Strategy</h3>
+<ul>
+<li>Never go alone (bring NPCs if possible)</li>
+<li>Move slowly, check corners</li>
+<li>Prioritize targets (casters first)</li>
+<li>Know when to retreat</li>
+<li>Mark your path</li>
+<li>Loot quickly, leave fast</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">LAB FINALE TYPES</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Finale Variations</h3>
+<table>
+<tr><th>Type</th><th>Challenge</th><th>Reward</th></tr>
+<tr><td>Armory</td><td>Heavy security</td><td>Military gear, weapons</td></tr>
+<tr><td>Medical</td><td>Mutated subjects</td><td>CBMs, mutagens</td></tr>
+<tr><td>Portal</td><td>Nether creatures</td><td>Artifacts</td></tr>
+<tr><td>Research</td><td>Robots, turrets</td><td>Science gear, rare items</td></tr>
+<tr><td>Central</td><td>All challenges</td><td>Best rewards</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">General Finale Strategy</h3>
+<ul>
+<li>Prepare for worst-case scenario</li>
+<li>Hack terminals if possible</li>
+<li>Use terrain for cover</li>
+<li>Prioritize high-value targets</li>
+<li>Grab loot and evacuate</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">LEGENDARY ENEMIES</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Boss Tier List</h3>
+<table>
+<tr><th>Enemy</th><th>Danger</th><th>Strategy</th></tr>
+<tr><td>Shoggoth</td><td>Extreme</td><td>Run. Seriously. Or explosives.</td></tr>
+<tr><td>Herald</td><td>Extreme</td><td>Ranged only, high damage output</td></tr>
+<tr><td>Jabberwock</td><td>Very High</td><td>Speed is key, don't get grabbed</td></tr>
+<tr><td>Legendary Jotun</td><td>Very High</td><td>Anti-materiel rifle or better</td></tr>
+<tr><td>Migos</td><td>High</td><td>Group tactics, divide and conquer</td></tr>
+<tr><td>Gracken</td><td>High</td><td>High resistances, bring varied damage</td></tr>
+<tr><td>Dark Wyrm</td><td>High</td><td>Melee unfriendly, use ranged</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Combat Approach</h3>
+<ul>
+<li>Learn their attack patterns</li>
+<li>Use terrain advantage</li>
+<li>Exploit weaknesses</li>
+<li>Bring overwhelming firepower</li>
+<li>Have escape plan</li>
+<li>Sometimes running IS the winning move</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">FACTION CAMP MASTERY</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Camp Expansion</h3>
+<ul>
+<li>Start with basics (tent, fire)</li>
+<li>Build fortifications</li>
+<li>Add crafting stations</li>
+<li>Storage and organization</li>
+<li>Defensive positions</li>
+<li>Farming plots</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">NPC Management</h3>
+<ul>
+<li>Assign jobs based on skills</li>
+<li>Keep them equipped</li>
+<li>Manage morale</li>
+<li>Use for base defense</li>
+<li>Companions for expeditions</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Missions</h3>
+<table>
+<tr><th>Type</th><th>Reward</th><th>Risk</th></tr>
+<tr><td>Scavenging</td><td>Resources</td><td>Medium</td></tr>
+<tr><td>Combat</td><td>Experience</td><td>High</td></tr>
+<tr><td>Crafting</td><td>Items</td><td>Low</td></tr>
+<tr><td>Recon</td><td>Map info</td><td>Medium</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ADVANCED VEHICLES (Deathmobiles)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Design Principles</h3>
+<ul>
+<li>Speed or armor - choose one</li>
+<li>Plan for fuel sustainability</li>
+<li>Multiple escape routes</li>
+<li>Living space vs combat space</li>
+<li>Storage solutions</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Features</h3>
+<table>
+<tr><th>Feature</th><th>Implementation</th></tr>
+<tr><td>Bed/sleeping space</td><td>Seat or bed inside</td></tr>
+<tr><td>Kitchen</td><td>Foldable or mounted</td></tr>
+<tr><td>Workshop</td><td>Tools mounted on vehicle</td></tr>
+<tr><td>Storage</td><td>Cargo carriers, trunks</td></tr>
+<tr><td>Defense</td><td>Ram, turrets, armor</td></tr>
+<tr><td>Sustainability</td><td>Solar, water tanks</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Turret Types</h3>
+<table>
+<tr><th>Turret</th><th>Ammo</th><th>Use</th></tr>
+<tr><td>Mounted rifle</td><td>Rifle ammo</td><td>Precision, ammo efficient</td></tr>
+<tr><td>Mounted SMG</td><td>Pistol ammo</td><td>Anti-horde</td></tr>
+<tr><td>Flamethrower</td><td>Gas</td><td>Area denial (dangerous)</td></tr>
+<tr><td>Grenade</td><td>40mm</td><td>Heavy targets</td></tr>
+</table>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5 -->
+<section id="module5" class="module">
+<h1 class="module-title">MODULE 5: SYSTEMS REFERENCE</h1>
+
+<div class="section">
+<h2 class="section-title">REALITY BUBBLE (Technical)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Technical Details</h3>
+<ul>
+<li>Centered on player character</li>
+<li>Radius: ~60 tiles</li>
+<li>Overmap tiles: 3x3 centered on player</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Strategic Uses</h3>
+<ul>
+<li>Items don't spoil outside bubble</li>
+<li>Pause zombie evolution by staying away</li>
+<li>Farms only grow while you're near</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Limitations</h3>
+<ul>
+<li>Hordes can enter bubble</li>
+<li>Sound carries outside bubble</li>
+<li>Fire spreads</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ENCUMBRANCE & CLOTHING</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Layer System (Inner → Outer)</h3>
+<table>
+<tr><th>Layer</th><th>Example</th><th>Penalty</th></tr>
+<tr><td>Close to skin</td><td>Underwear, long johns</td><td>Minimal</td></tr>
+<tr><td>Normal</td><td>T-shirt, pants</td><td>Low</td></tr>
+<tr><td>Strapped</td><td>Backpack, scabbard</td><td>Medium</td></tr>
+<tr><td>Outer</td><td>Jacket, coat</td><td>Medium</td></tr>
+<tr><td>Belted</td><td>Utility belt, holster</td><td>Variable</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Encumbrance Effects</h3>
+<table>
+<tr><th>Body Part</th><th>Effect When Encumbered</th></tr>
+<tr><td>Torso</td><td>Melee combat penalty, increased stamina drain</td></tr>
+<tr><td>Head</td><td>Vision penalty</td></tr>
+<tr><td>Eyes</td><td>Perception penalty</td></tr>
+<tr><td>Mouth</td><td>Running penalty</td></tr>
+<tr><td>Arms</td><td>Melee attack speed</td></tr>
+<tr><td>Hands</td><td>Manipulation penalty, crafting slower</td></tr>
+<tr><td>Legs</td><td>Running speed, swimming</td></tr>
+<tr><td>Feet</td><td>Running speed</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Coverage & Protection</h3>
+<ul>
+<li><strong>Coverage:</strong> % chance to protect hit location</li>
+<li><strong>Protection:</strong> Damage reduction (bash/cut/ballistic)</li>
+<li><strong>Environmental:</strong> Acid, fire, electricity resistance</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">COMBAT MECHANICS</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Hit Calculation</h3>
+<p>Hit = Skill + Weapon bonus + Stats + Encumbrance penalties</p>
+<ul>
+<li>Higher is better</li>
+<li>0 = 50% hit chance</li>
+<li>Positive = better hit chance</li>
+<li>Negative = worse hit chance</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Damage Types</h3>
+<table>
+<tr><th>Type</th><th>Effect</th><th>Resisted By</th></tr>
+<tr><td>Bash</td><td>Blunt force, stamina damage</td><td>Armor bash protection</td></tr>
+<tr><td>Cut</td><td>Bleeding, high damage</td><td>Armor cut protection</td></tr>
+<tr><td>Stab</td><td>Armor piercing</td><td>Lower resistance than cut</td></tr>
+<tr><td>Ballistic</td><td>Ranged damage</td><td>Special ballistic armor</td></tr>
+<tr><td>Acid</td><td>Armor degradation</td><td>Acid-resistant gear</td></tr>
+<tr><td>Fire</td><td>Burning damage</td><td>Fire resistance</td></tr>
+<tr><td>Electric</td><td>Bypasses armor</td><td>Insulation</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Critical Hits</h3>
+<p>Random chance based on:</p>
+<ul>
+<li>Weapon critical multiplier</li>
+<li>Skill level</li>
+<li>Hit roll quality</li>
+</ul>
+<p>Effects: Extra damage, special effects (stun, knockback, etc.)</p>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">SKILL SYSTEM</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Skill Training</h3>
+<table>
+<tr><th>Method</th><th>Efficiency</th><th>Notes</th></tr>
+<tr><td>Practice</td><td>Slow but steady</td><td>Using skills levels them</td></tr>
+<tr><td>Books</td><td>Fastest</td><td>Read time required</td></tr>
+<tr><td>NPC training</td><td>Moderate</td><td>Costs trust/time</td></tr>
+<tr><td>Crafting</td><td>Moderate</td><td>Also produces items</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Skill Rust</h3>
+<ul>
+<li>Skills decay over time if unused</li>
+<li>Rust is slow</li>
+<li>Reading skill books resets rust timer</li>
+<li>Some skills rust faster than others</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Proficiencies</h3>
+<ul>
+<li>Knowledge-based crafting requirements</li>
+<li>Learned from books or practice</li>
+<li>Required for advanced recipes</li>
+<li>Don't rust like skills</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">TEMPERATURE & WEATHER</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Temperature Effects</h3>
+<table>
+<tr><th>Condition</th><th>Effect</th></tr>
+<tr><td>Hot</td><td>Thirst increases faster, stamina drain</td></tr>
+<tr><td>Cold</td><td>Slower movement, dexterity penalty</td></tr>
+<tr><td>Very Cold</td><td>Frostbite risk, severe penalties</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Wetness Mechanics</h3>
+<ul>
+<li>Wet clothing reduces warmth</li>
+<li>Standing water makes you wet</li>
+<li>Rain protection essential</li>
+<li>Dry off near fires</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Hypothermia Stages</h3>
+<table>
+<tr><th>Stage</th><th>Symptoms</th><th>Treatment</th></tr>
+<tr><td>Chilly</td><td>Slight discomfort</td><td>Warm clothes</td></tr>
+<tr><td>Cold</td><td>Shivering, slow</td><td>Fire, shelter</td></tr>
+<tr><td>Hypothermic</td><td>Severe penalties</td><td>Immediate warming</td></tr>
+<tr><td>Severe</td><td>Life-threatening</td><td>Emergency treatment</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Heat Stroke</h3>
+<table>
+<tr><th>Stage</th><th>Symptoms</th><th>Treatment</th></tr>
+<tr><td>Warm</td><td>Thirsty</td><td>Water, shade</td></tr>
+<tr><td>Hot</td><td>Stamina drain</td><td>Cool down</td></tr>
+<tr><td>Heat stroke</td><td>Severe penalties</td><td>Immediate cooling</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">DISEASE & INFECTION</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Common Illnesses</h3>
+<table>
+<tr><th>Disease</th><th>Cause</th><th>Prevention</th><th>Treatment</th></tr>
+<tr><td>Common Cold</td><td>Random exposure</td><td>Rest, good health</td><td>Rest, time</td></tr>
+<tr><td>Flu</td><td>Random, worse in winter</td><td>Health stat</td><td>Antibiotics if bacterial</td></tr>
+<tr><td>Food Poisoning</td><td>Rotten/contaminated food</td><td>Check food freshness</td><td>Charcoal tablets</td></tr>
+<tr><td>Parasites</td><td>Uncooked meat, bad water</td><td>Cook food, clean water</td><td>Antiparasitic drugs</td></tr>
+<tr><td>Tetanus</td><td>Wounds from rusty objects</td><td>Clean wounds promptly</td><td>Antibiotics</td></tr>
+<tr><td>Bite Infection</td><td>Zombie bites</td><td>Avoid getting bitten!</td><td>Antibiotics quickly</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Wound Care</h3>
+<ul>
+<li>Bandage bleeding wounds immediately</li>
+<li>Disinfect with alcohol or antiseptic</li>
+<li>Change bandages regularly</li>
+<li>Infected wounds need antibiotics</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Health Stat</h3>
+<ul>
+<li>Hidden stat affecting disease resistance</li>
+<li>Raised by: Vitamins, healthy food, exercise</li>
+<li>Lowered by: Drugs, alcohol, unhealthy food</li>
+<li>Important for long-term survival</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">MUTATION SYSTEM (Technical)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Primer/Catalyst System</h3>
+<table>
+<tr><th>Component</th><th>Function</th><th>Source</th></tr>
+<tr><td>Primer</td><td>Gives category mutations</td><td>Craft from ingredients</td></tr>
+<tr><td>Catalyst</td><td>Enables threshold crossing</td><td>Rare, labs</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Instability Formula</h3>
+<ul>
+<li>Each mutation adds instability</li>
+<li>Higher instability = more/bad mutations</li>
+<li>Decays slowly over time</li>
+<li>Purifier reduces instability</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Dream Stages</h3>
+<table>
+<tr><th>Stage</th><th>Indicates</th></tr>
+<tr><td>Strange dreams</td><td>First mutations incoming</td></tr>
+<tr><td>Vivid dreams</td><td>Active mutation period</td></tr>
+<tr><td>Intense dreams</td><td>Near threshold or high instability</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Threshold Requirements</h3>
+<ul>
+<li>Many mutations in category</li>
+<li>High instability</li>
+<li>Category-specific catalyst</li>
+<li>Permanent choice</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">BIONICS SYSTEM (Technical)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">CBM Types</h3>
+<table>
+<tr><th>Type</th><th>Function</th></tr>
+<tr><td>Passive</td><td>Always active, no cost</td></tr>
+<tr><td>Active</td><td>Toggle on/off, power cost</td></tr>
+<tr><td>Powered</td><td>Continuous power drain</td></tr>
+<tr><td>Triggered</td><td>Activates automatically</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Power Systems</h3>
+<table>
+<tr><th>Source</th><th>Input</th><th>Efficiency</th></tr>
+<tr><td>Solar</td><td>Sunlight</td><td>Slow but free</td></tr>
+<tr><td>Thermoelectric</td><td>Body heat</td><td>Very slow</td></tr>
+<tr><td>Internal Furnace</td><td>Burns items</td><td>Variable</td></tr>
+<tr><td>Ethanol</td><td>Bio-ethanol</td><td>Good</td></tr>
+<tr><td>Metabolic</td><td>Food/calories</td><td>Costly</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Installation Math</h3>
+<ul>
+<li>Success chance based on: Intelligence, First Aid, Health</li>
+<li>Autodoc bonus: +30% success</li>
+<li>Anesthesia required for manual install</li>
+<li>Failure causes damage, pain, possible CBM destruction</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">VEHICLE PHYSICS (Current)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Weight & Speed</h3>
+<ul>
+<li>Heavier = slower acceleration</li>
+<li>Top speed affected by engine power vs weight</li>
+<li>Cargo adds weight</li>
+<li>Armor adds significant weight</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Fuel Consumption</h3>
+<ul>
+<li>Based on engine load</li>
+<li>Idle consumption minimal</li>
+<li>Acceleration uses most fuel</li>
+<li>Steady speed most efficient</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Part Durability</h3>
+<ul>
+<li>Parts take damage from collisions</li>
+<li>Wheels vulnerable to gunfire</li>
+<li>Armor protects internal components</li>
+<li>Repair with welding + materials</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Traction</h3>
+<ul>
+<li>Affected by terrain</li>
+<li>Wheels slip on ice/mud</li>
+<li>Off-road performance varies</li>
+<li>Wheel type matters</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ZOMBIE EVOLUTION (Current)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Evolution Mechanics</h3>
+<ul>
+<li>Time-based (in-game days)</li>
+<li>Location-based (cities evolve faster)</li>
+<li>Hordes evolve as group</li>
+<li>Killing evolved zombies slows local evolution</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Master/Necromancer</h3>
+<ul>
+<li>Masters: Buff nearby zombies</li>
+<li>Necromancers: Revive corpses</li>
+<li>Priority targets</li>
+<li>Kill from range if possible</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Evolution Types</h3>
+<table>
+<tr><th>Original</th><th>Evolves To</th><th>Change</th></tr>
+<tr><td>Zombie</td><td>Hunter, Shocker</td><td>Faster/Electric</td></tr>
+<tr><td>Rotter</td><td>Spitter</td><td>Acid attack</td></tr>
+<tr><td>Tough zombie</td><td>Hulk</td><td>Massive HP/Damage</td></tr>
+<tr><td>Zombie scientist</td><td>Master</td><td>Buffs allies</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">FACTIONS & NPCS</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Major Factions</h3>
+<table>
+<tr><th>Faction</th><th>Location</th><th>Attitude</th></tr>
+<tr><td>Old Guard</td><td>Refugee center</td><td>Neutral, missions available</td></tr>
+<tr><td>Free Merchants</td><td>Trading posts</td><td>Friendly, trading</td></tr>
+<tr><td>Tacoma Commune</td><td>Ranch</td><td>Construction focus</td></tr>
+<tr><td>Lord of the Flies</td><td>Bandit camps</td><td>Hostile</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">NPC Trust System</h3>
+<ul>
+<li>Trust gained by: Missions, gifts, time</li>
+<li>Trust lost by: Attacking, stealing</li>
+<li>High trust = better trades, training</li>
+<li>Low trust = refusal to interact</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Companion Commands</h3>
+<table>
+<tr><th>Command</th><th>Use</th></tr>
+<tr><td>Guard</td><td>Stay in place</td></tr>
+<tr><td>Follow</td><td>Follow closely</td></tr>
+<tr><td>Attack</td><td>Engage enemies</td></tr>
+<tr><td>Stay back</td><td>Don't engage</td></tr>
+<tr><td>Use item</td><td>Medical, etc.</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">ZONE MANAGER (Y Key) - Technical</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Zone Types</h3>
+<table>
+<tr><th>Zone</th><th>Function</th></tr>
+<tr><td>Unsorted Loot</td><td>Default drop zone</td></tr>
+<tr><td>Custom Storage</td><td>Organized categories</td></tr>
+<tr><td>Vehicle Storage</td><td>Vehicle tile storage</td></tr>
+<tr><td>Pulp</td><td>Mass corpse pulping</td></tr>
+<tr><td>Construction</td><td>Blueprint area</td></tr>
+<tr><td>Farming</td><td>Automated agriculture</td></tr>
+<tr><td>Disassembly</td><td>Salvage operations</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Zone Activities (O Key)</h3>
+<ul>
+<li>Sort items from unsorted to custom zones</li>
+<li>Pulp corpses in designated zones</li>
+<li>Construct blueprints</li>
+<li>Farm operations</li>
+<li>Disassemble items</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Advanced Features</h3>
+<ul>
+<li>Zone overlap strategies</li>
+<li>Hidden zone detection</li>
+<li>Distance display</li>
+<li>Multiple unsorted zones</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- MODULE 6 -->
+<section id="module6" class="module">
+<h1 class="module-title">MODULE 6: QUICK REFERENCE & TROUBLESHOOTING</h1>
+
+<div class="section">
+<h2 class="section-title">EMERGENCY ACTIONS</h2>
+<table>
+<tr><th>Situation</th><th>Action</th></tr>
+<tr><td>Surrounded</td><td>Drainpipe, climb up, break grab (G)</td></tr>
+<tr><td>Low HP</td><td>Retreat, bandage, find shelter</td></tr>
+<tr><td>Bleeding</td><td>Bandage immediately</td></tr>
+<tr><td>Broken limb</td><td>Splint, find safe spot</td></tr>
+<tr><td>Poisoned</td><td>Activated charcoal</td></tr>
+<tr><td>Infection</td><td>Antibiotics ASAP</td></tr>
+<tr><td>On fire</td><td>Stop, drop, roll (wait)</td></tr>
+<tr><td>Night fall outside</td><td>Sprint to shelter, use light sparingly</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2 class="section-title">SURVIVAL PRIORITIES</h2>
+<ol>
+<li><strong>Water</strong> - Dehydration kills in days</li>
+<li><strong>Shelter</strong> - Night protection essential</li>
+<li><strong>Food</strong> - Starvation takes longer</li>
+<li><strong>Weapon</strong> - Self-defense</li>
+<li><strong>Medical</strong> - Treat injuries promptly</li>
+<li><strong>Information</strong> - Books, maps</li>
+<li><strong>Tools</strong> - Crafting capability</li>
+<li><strong>Comfort</strong> - Morale, sleep quality</li>
+</ol>
+</div>
+
+<div class="section">
+<h2 class="section-title">KEYBINDINGS REFERENCE</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Essential Keys</h3>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td>Arrow Keys / Numpad</td><td>Move</td></tr>
+<tr><td>Shift + Direction</td><td>Run</td></tr>
+<tr><td>Ctrl + Direction</td><td>Move without attacking</td></tr>
+<tr><td>.</td><td>Wait 1 turn</td></tr>
+<tr><td>,</td><td>Pick up</td></tr>
+<tr><td>g</td><td>Pick up</td></tr>
+<tr><td>d</td><td>Drop</td></tr>
+<tr><td>i</td><td>Inventory</td></tr>
+<tr><td>w</td><td>Wield</td></tr>
+<tr><td>W</td><td>Wear</td></tr>
+<tr><td>T</td><td>Take off</td></tr>
+<tr><td>e</td><td>Examine/Interact</td></tr>
+<tr><td>;</td><td>Look around</td></tr>
+<tr><td>x</td><td>Peek/Examine map</td></tr>
+<tr><td>c</td><td>Close</td></tr>
+<tr><td>o</td><td>Open</td></tr>
+<tr><td>s</td><td>Smash</td></tr>
+<tr><td>t</td><td>Throw</td></tr>
+<tr><td>f</td><td>Fire</td></tr>
+<tr><td>F</td><td>Toggle firing/reach mode</td></tr>
+<tr><td>r</td><td>Reload</td></tr>
+<tr><td>R</td><td>Reload advanced</td></tr>
+<tr><td>&amp;</td><td>Craft</td></tr>
+<tr><td>b</td><td>Butcher</td></tr>
+<tr><td>B</td><td>Bash</td></tr>
+<tr><td>a</td><td>Use/Activate</td></tr>
+<tr><td>E</td><td>Eat</td></tr>
+<tr><td>q</td><td>Quaff (drink)</td></tr>
+<tr><td>$</td><td>Sleep</td></tr>
+<tr><td>&amp;#35;</code></td><td>Wait longer</td></tr>
+<tr><td>&gt;</td><td>Descend stairs</td></tr>
+<tr><td>&lt;</td><td>Ascend stairs</td></tr>
+<tr><td>Y</td><td>Zone Manager</td></tr>
+<tr><td>O</td><td>Zone Activities</td></tr>
+<tr><td>G</td><td>Grab break</td></tr>
+<tr><td>?</td><td>Help</td></tr>
+<tr><td>Esc</td><td>Menu/Quit action</td></tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">TROUBLESHOOTING</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Common Problems</h3>
+<table>
+<tr><th>Problem</th><th>Solution</th></tr>
+<tr><td>Game runs slow</td><td>Reduce reality bubble size, turn off animations</td></tr>
+<tr><td>Can't find item</td><td>Zone Manager (Y), advanced inventory (/)</td></tr>
+<tr><td>Too many items</td><td>Sort zones, drop unnecessary weight</td></tr>
+<tr><td>Stuck in menu</td><td>ESC to cancel, or ? for help</td></tr>
+<tr><td>Zombie won't die</td><td>Check weapon damage type, use better weapon</td></tr>
+<tr><td>Vehicle won't start</td><td>Check fuel, battery, controls, wheels</td></tr>
+<tr><td>Can't craft recipe</td><td>Check skills, proficiencies, tools, materials</td></tr>
+<tr><td>Inventory full</td><td>Drop items, get container, manage encumbrance</td></tr>
+<tr><td>Safe mode keeps stopping</td><td>Configure ignore list, increase proximity</td></tr>
+</table>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Performance Tips</h3>
+<ul>
+<li>Turn off unnecessary animations</li>
+<li>Reduce view distance</li>
+<li>Avoid cities early game (many zombies = slow)</li>
+<li>Don't hoard thousands of items</li>
+<li>Turn off 3D FOV if not needed</li>
+<li>Use zone manager to organize (reduces item checks)</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">I WISH I KNEW SOONER (By Mortality Rate)</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">1. Safe Mode + Auto-Pulp (Prevents 80% of Deaths)</h3>
+<p>Configure immediately:</p>
+<ul>
+<li>Safe Mode: 5 tiles</li>
+<li>Auto-Pulp: Adjacent corpses</li>
+</ul>
+<p>These prevent most early deaths from unexpected hordes and zombie revival.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">2. Drainpipe Escape</h3>
+<p>When surrounded:</p>
+<ol>
+<li>Find drainpipe on building</li>
+<li>e (examine) → Climb up</li>
+<li>Zombies can't follow</li>
+</ol>
+<p>Lifesaver in emergencies.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">3. Noise Discipline</h3>
+<ul>
+<li>Walk, don't run</li>
+<li>Don't smash furniture (disassemble instead)</li>
+<li>Avoid guns early game</li>
+<li>Close doors quietly</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">4. Zone Manager</h3>
+<p>Press <kbd>Y</kbd>. Set up:</p>
+<ul>
+<li>Unsorted Loot zone (base dump)</li>
+<li>Custom storage zones</li>
+<li>Press <kbd>O</kbd> to sort automatically</li>
+</ul>
+<p>Massive time saver.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">5. Auto-Pickup Configuration</h3>
+<p>Set rules for:</p>
+<ul>
+<li>*bandage (medical)</li>
+<li>*water (hydration)</li>
+<li>*antibiotic (infection cure)</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">6. Peek Command (x)</h3>
+<p>Check corners before moving:</p>
+<p><kbd>x</kbd> → direction</p>
+<p>Prevents walking into hordes.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">7. Grab Break (G)</h3>
+<p>When grabbed by zombies:</p>
+<p><kbd>G</kbd> or <kbd>Ctrl</kbd> + direction</p>
+<p>Escape and survive.</p>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">8. Water Before Food</h3>
+<p>Dehydration kills faster than starvation. Prioritize:</p>
+<ol>
+<li>Find toilet water (safe in emergency)</li>
+<li>Craft stone pot</li>
+<li>Boil all water before drinking</li>
+</ol>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">PROGRESSION CHECKLIST</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Day 1</h3>
+<ul>
+<li>Safe mode configured</li>
+<li>Auto-pulp enabled</li>
+<li>Basic weapon acquired</li>
+<li>Water source identified</li>
+<li>Shelter secured</li>
+<li>Know drainpipe escape route</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Day 7</h3>
+<ul>
+<li>Basic tools obtained</li>
+<li>Storage organized</li>
+<li>Food source sustainable</li>
+<li>Combat basics learned</li>
+<li>Base location identified</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Day 30</h3>
+<ul>
+<li>Established base</li>
+<li>Vehicle working</li>
+<li>Zone system operational</li>
+<li>Weapon tier 3+</li>
+<li>Raiding capability</li>
+</ul>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Day 90</h3>
+<ul>
+<li>Mutations or CBMs acquired</li>
+<li>Deathmobile constructed</li>
+<li>Lab raids completed</li>
+<li>Winter prepared</li>
+<li>Endgame capable</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2 class="section-title">FINAL TIPS</h2>
+
+<div class="subsection">
+<h3 class="subsection-title">Golden Rules</h3>
+<ol>
+<li>Don't get greedy</li>
+<li>Running away is winning</li>
+<li>Noise = Death</li>
+<li>Preparation prevents poor performance</li>
+<li>Zombies evolve, you must too</li>
+<li>When in doubt, check the wiki</li>
+</ol>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Remember</h3>
+<ul>
+<li>Every death is a lesson</li>
+<li>The apocalypse is unfair</li>
+<li>Knowledge is the best armor</li>
+<li>Community helps survival</li>
+<li>Have fun losing</li>
+</ul>
+<div class="tip-box success">
+    <div class="tip-label">Final Words</div>
+    <p>You will die. Learn from it. The next survivor will be stronger.</p>
+</div>
+</div>
+</div>
+</section>
+
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+        </main>
+    </div>
+    <script>
+        const searchBox = document.getElementById('searchBox');
+        const modules = document.querySelectorAll('.module');
+        searchBox.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            modules.forEach(mod => { mod.style.display = !term || mod.textContent.toLowerCase().includes(term) ? 'block' : 'none'; });
+        });
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => backToTop.classList.toggle('visible', window.scrollY > 500));
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            modules.forEach(mod => { if (mod.getBoundingClientRect().top <= 100) current = mod.id; });
+            navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+        });
+    </script>
+</body>
+</html>
